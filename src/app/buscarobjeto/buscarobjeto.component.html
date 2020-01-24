@@ -37,6 +37,14 @@
           <label for="basic-url">Fecha:</label>
           <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
         </div>
+        <div>
+          <ul>
+            <li *ngFor="let cosa of cosita" class="card">
+              {{cosa}}
+            </li>
+          </ul>
+        </div>
+
         <div class="row align-items-end col align-self-start pb-3 pt-5">
           <button type="button" class="btn btn-secondary"><i class="fa fa-times-circle pr-2"></i>Cerrar
             Sesión</button>
