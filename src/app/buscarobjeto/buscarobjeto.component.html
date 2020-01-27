@@ -7,17 +7,22 @@
 <body>
   <div class="text-center container">
     <div class="card shadow-lg d-flex p-3 m-3">
+
+      <!--Titulo-->
       <div class="p-4">
         <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
       </div>
 
       <div>
+        <!--Filtros de busqueda-->
         <label for="basic-url">Filtrar por:</label>
         <div class="p-3">
+          <!--Filtro palabra-->
           <label for="basic-url">Palabra:</label>
           <input type="text" class="form-control shadow-sm" placeholder="Palabra" aria-label="Palabra"
             aria-describedby="basic-addon1">
         </div>
+        <!--Filtro Categoria-->
         <div class="p-3">
           <label for="basic-url">Categoria:</label>
           <div class="input-group mb-1">
@@ -30,21 +35,49 @@
               <option value="3">Ropa</option>
               <option value="3">Equipo deportivo</option>
               <option value="3">Bicicleta</option>
-            </select>          
+            </select>
           </div>
         </div>
+        <!--Filtro fecha-->
         <div class="p-3">
           <label for="basic-url">Fecha:</label>
           <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
         </div>
-        <div>
+
+
+        <!--Lista de objetos registrados en base de datos-->
+        <div class="d-flex justify-content-center scrollbar scrollbar-primary" style="background-color:rgb(247, 247, 247);">
           <ul>
-            <li *ngFor="let cosa of cosita" class="card">
-              {{cosa}}
+            <!--Ciclo que muestra cada elemento en vector "cosita"-->
+            <li *ngFor="let cosa of cosita" class="card-group">
+              <div class="card mb-3 shadow-sm" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <!--Imagen del objeto-->
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                      aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" role="img">
+                      <title>Placeholder</title>
+                      <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6"
+                        dy=".3em">Image</text>
+                    </svg>
+                  </div>
+                  <!--Descripción del objeto-->
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{cosa}}</h5>
+                      <p class="card-text">It's a broader card with text below as a natural lead-in to extra content.
+                        This
+                        content is a little longer.</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
 
+        <!--Cerrar sesión-->
         <div class="row align-items-end col align-self-start pb-3 pt-5">
           <button type="button" class="btn btn-secondary"><i class="fa fa-times-circle pr-2"></i>Cerrar
             Sesión</button>
