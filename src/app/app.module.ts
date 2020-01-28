@@ -15,7 +15,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
       HomeComponent,
       LoginComponent,
       EncontreObjetoComponent,
-      BuscarObjetoComponent
+      BuscarObjetoComponent,
    ],
    imports: [
       BrowserModule,
