@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscarObjetoComponent implements OnInit {
 
-  cosita=["a","b","c"];
+  cosita=["a","b","c","d","e","f"];
 
   constructor() { }
 

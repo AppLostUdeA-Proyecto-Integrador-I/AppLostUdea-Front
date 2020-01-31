@@ -1,0 +1,21 @@
+@media (max-width: 575.98px) { 
+    .card{
+        padding: 1;
+        margin: 1;
+    }
+    .container{
+        padding: 1;
+        margin: 1;
+    }
+    h1{
+        font-size: x-large;
+    }
+   }
+   @media (min-width: 768px) { 
+
+    .container{
+        position: center;
+        width: 50rem;
+    }
+
+    }
