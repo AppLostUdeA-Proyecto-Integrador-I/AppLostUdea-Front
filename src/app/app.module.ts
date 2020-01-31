@@ -43,7 +43,7 @@ const config = {
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule, // firestore
      AngularFireAuthModule, // auth
-     AngularFireStorageModule // storage
+     AngularFireStorageModule, // storage
       RouterModule,
       MDBBootstrapModule.forRoot()
    ],
