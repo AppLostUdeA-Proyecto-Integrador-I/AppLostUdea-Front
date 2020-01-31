@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { EncontreObjetoComponent } from './encontreobjeto/encontreobjeto.component';
 import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { RouterModule, Routes } from '@angular/router';
 
 // importar los módulos que planeamos usar en nuestra aplicación Auth and Firestor
 import { AngularFireModule } from '@angular/fire';
@@ -33,18 +34,18 @@ const config = {
       HomeComponent,
       LoginComponent,
       EncontreObjetoComponent,
-      BuscarObjetoComponent
+      BuscarObjetoComponent,
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      MDBBootstrapModule.forRoot(),
       //Initialize
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule, // firestore
      AngularFireAuthModule, // auth
      AngularFireStorageModule // storage
-
+      RouterModule,
+      MDBBootstrapModule.forRoot()
    ],
   // declarations: [AppComponent],
    providers: [],

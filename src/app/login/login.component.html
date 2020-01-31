@@ -1,21 +1,8 @@
-<!doctype html>
-
-<head>
-  <title>AppLostUdeA</title>
-</head>
-
-<body>
-  <div class="text-center container">
-    <div class="card shadow-lg d-flex p-3 m-3">
-      <div>
-        <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
-        <img src="../../assets/img/logoUdea.png" width="200" height="180" class="img-fluid p-2" alt="Responsive image">
-      </div>
-      <div *ngIf="auth.user$ | async; then authenticated else guest">
-        <!-- template will replace this div -->
+<div class="text-center">
+  <img src="../../assets/img/logoblanco.png" width="200" height="180" class="img-fluid p-2" alt="Responsive image">
 </div>
-
-<!-- User NOT logged in -->
+<div class="text-center container">
+  <!-- User NOT logged in -->
 <ng-template #guest>
     <h3>Howdy, GUEST</h3>
     <p>Login to get started...</p>
@@ -23,7 +10,6 @@
     <button (click)="auth.googleSignin()">
         <i class="fa fa-google"></i> Connect Google
     </button>
-
 </ng-template>
 
 
@@ -34,21 +20,12 @@
         <button (click)="auth.signOut()">Logout</button>
     </div>
 </ng-template>
-
-      <div>
-        <div class="input-group mb-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">@</span>
-          </div>
-          <input type="text" class="form-control shadow-sm" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group mb-4">
-          <input type="password" class="form-control shadow-sm" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-        </div>
-        <div>
-          <button type="button" class="btn btn-secondary m-3"><i class="fa fa-chevron-circle-right pr-2"></i>Ingresar</button>
-        </div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow-lg mx-auto">
+          <h1>App Lost UdeA <i class="fa fa-search"></i></h1>
+          <button type="button" class="btn btn-secondary btn-general"><i class="fab fa-google"></i> &nbsp;Ingresar</button>
       </div>
     </div>
   </div>
-</body>
+</div>

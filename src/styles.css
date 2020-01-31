@@ -3,49 +3,40 @@
 
 
 body {
-    background-image: url('assets/img/fondo1pc.jpg') ;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-color: darkgray;
-}
+    background-color: #348F41;
+    font-size: 16px;
+    }
+
 .card{
     background-color: rgb(247, 247, 247);
 }
-.btn-secondary{
-    background-color: rgb(54, 109, 63);
+
+.btn-general{
+    background-color: rgb(62, 126, 73);
     font-weight: 500 ;
     box-shadow: 0 8px 16px 0 rgba(20, 20, 20, 0.2), 0 6px 20px 0 rgba(20, 20, 20, 0.19);
 }
+
+.scrollbar {
+    height: 400px;
+    width: 100%;
+    background: #fff;
+    overflow-y: scroll;
+    margin-bottom: 25px;
+    }
+
+.scrollbar-primary {
+    scrollbar-color: #4285F4 #F5F5F5;
+    }
+
 h1{
     text-shadow: 2px 2px 3px rgb(173, 172, 172);
     font-weight: bold;
-    color: rgb(62, 126, 73);
+    color: #348F41;
   }
 
+ul{
+    margin: 0rem;
+    padding: 0rem;
+}
 
-  @media (max-width: 575.98px) { 
-    .card{
-        padding: 1;
-        margin: 1;
-    }
-    .container{
-        padding: 1;
-        margin: 1;
-    }
-    h1{
-        font-size: x-large;
-    }
-    body{
-        background-image: url('assets/img/fondo1cel.jpg');
-    }
-
-   }
-   @media (min-width: 768px) { 
-
-    .container{
-        position: center;
-        width: 50rem;
-    }
-
-    }
