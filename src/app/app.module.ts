@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { EncontreObjetoComponent } from './encontreobjeto/encontreobjeto.component';
 import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -35,6 +36,7 @@ const config = {
       LoginComponent,
       EncontreObjetoComponent,
       BuscarObjetoComponent,
+      SidebarComponent,
    ],
    imports: [
       BrowserModule,
