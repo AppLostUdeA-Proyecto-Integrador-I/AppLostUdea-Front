@@ -6,12 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  active = false;
 
   constructor() {}
 
 
 
   ngOnInit() {
+  }
+  showSidebar(){
+    this.active = !this.active;
   }
 
 }

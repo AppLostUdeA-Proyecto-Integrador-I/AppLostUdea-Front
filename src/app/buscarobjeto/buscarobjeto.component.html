@@ -13,40 +13,85 @@
         <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
       </div>
 
-      <div>
-        <!--Filtros de busqueda-->
-        <label for="basic-url">Filtrar por:</label>
-        <div class="p-3">
-          <!--Filtro palabra-->
-          <label for="basic-url">Palabra:</label>
-          <input type="text" class="form-control shadow-sm" placeholder="Palabra" aria-label="Palabra"
-            aria-describedby="basic-addon1">
-        </div>
-        <!--Filtro Categoria-->
-        <div class="p-3">
-          <label for="basic-url">Categoria:</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">TIP</option>
-              <option value="2">Documento/Tarjeta</option>
-              <option value="3">Llaves</option>
-              <option value="3">PC/Celular/Tablet</option>
-              <option value="3">Ropa</option>
-              <option value="3">Equipo deportivo</option>
-              <option value="3">Bicicleta</option>
-            </select>
+      <!--Filtrar y Ordenar-->
+      <div class="row">
+
+        <!--Filtrar resultados-->
+        <div class="col">
+          <label for="basic-url">Filtrar por:</label>
+          <div class="p-3">
+            <!--Filtro palabra-->
+            <label for="basic-url">Palabra:</label>
+            <input type="text" class="form-control shadow-sm" placeholder="Palabra" aria-label="Palabra"
+              aria-describedby="basic-addon1">
+          </div>
+          <!--Filtro Categoria-->
+          <div class="p-3">
+            <label for="basic-url">Categoria:</label>
+            <div class="input-group mb-1">
+              <select class="custom-select" id="categoria">
+                <option selected>Elige una opción</option>
+                <option value="1">TIP</option>
+                <option value="2">Documento/Tarjeta</option>
+                <option value="3">Llaves</option>
+                <option value="4">PC/Celular/Tablet</option>
+                <option value="5">Ropa</option>
+                <option value="6">Equipo deportivo</option>
+                <option value="7">Bicicleta</option>
+              </select>
+            </div>
+          </div>
+          <!--Filtro fecha-->
+          <div class="p-3">
+            <label for="basic-url">Fecha:</label>
+            <div>
+              <label for="basic-url">Desde:</label>
+              <input class="form-control" type="datetime-local" id="cuandoSeEncontro1">
+              <label for="basic-url">Hasta</label>
+              <input class="form-control" type="datetime-local" id="cuandoSeEncontro2">
+            </div>
+            <div class="p-3">
+              <button type="button" class="btn btn-secondary btn-general mb-4"><i class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
+            </div>
           </div>
         </div>
-        <!--Filtro fecha-->
-        <div class="p-3">
-          <label for="basic-url">Fecha:</label>
-          <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
+
+        <div class="col">
+          <!--Ordenar resultados-->
+          <label for="basic-url">Ordenar por:</label>
+          <!--Por Categoria-->
+          <div class="p-3">
+            <label for="basic-url">Categoria:</label>
+            <div class="input-group mb-1">
+              <select class="custom-select" id="categoria">
+                <option selected>Elige una opción</option>
+                <option value="1">Alfabeticamente</option>
+                <option value="2">Mas viejos</option>
+                <option value="3">Mas nuevos</option>
+              </select>
+            </div>
+          </div>
+          <!--Por fecha-->
+          <div class="p-3">
+            <label for="basic-url">Fecha:</label>
+            <div>
+              <label for="basic-url">Desde:</label>
+              <input class="form-control" type="datetime-local" id="cuandoSeEncontro1">
+              <label for="basic-url">Hasta</label>
+              <input class="form-control" type="datetime-local" id="cuandoSeEncontro2">
+            </div>
+            <div class="p-3">
+              <button type="button" class="btn btn-secondary btn-general mb-4"><i class="fa fa-chevron-circle-right pr-2"></i>Ordenar</button>
+            </div>
+          </div>
         </div>
+      </div>
 
 
+      <div>
         <!--Lista de objetos registrados en base de datos-->
-        <div class="d-flex justify-content-center scrollbar scrollbar-primary" style="background-color:rgb(247, 247, 247);">
+        <div class="d-flex justify-content-center scrollbar scrollbar-primary"
+          style="background-color:rgb(247, 247, 247);">
           <ul>
             <!--Ciclo que muestra cada elemento en vector "cosita"-->
             <li *ngFor="let cosa of cosita" class="card-group">
