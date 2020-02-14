@@ -60,7 +60,7 @@ a:focus {
     min-width: 250px;
     max-width: 250px;
     background: rgb(255, 255, 255);
-    color: rgb(62, 126, 73)3fff;
+    color: rgb(62, 126, 73);
     transition: all 0.3s;
 }
 .navbarHeader{
