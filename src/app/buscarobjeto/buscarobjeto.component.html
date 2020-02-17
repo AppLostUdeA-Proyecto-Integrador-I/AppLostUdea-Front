@@ -13,15 +13,27 @@
         <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
       </div>
 
-      <!--Filtrar y Ordenar-->
-      <div class="row">
-
         <!--Filtrar resultados-->
-        <div class="col">
-          <label for="basic-url">Filtrar por:</label>
+
+        <h4>Filtrar:</h4>
+
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-categoria-tab" data-toggle="tab" href="#nav-categoria"
+              role="tab" aria-controls="nav-categoria" aria-selected="true">Categoria</a>
+            <a class="nav-item nav-link" id="nav-estado-tab" data-toggle="tab" href="#nav-estado" role="tab"
+              aria-controls="nav-estado" aria-selected="false">Estado</a>
+            <a class="nav-item nav-link" id="nav-fecha-tab" data-toggle="tab" href="#nav-fecha" role="tab"
+              aria-controls="nav-fecha" aria-selected="false">Fecha</a>
+            <a class="nav-item nav-link" id="nav-id-tab" data-toggle="tab" href="#nav-id" role="tab"
+              aria-controls="nav-id" aria-selected="false">ID</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
           <!--Filtro Categoria-->
-          <div class="p-3">
-            <label for="basic-url">Categoria:</label>
+          <div class="tab-pane fade show active m-3" id="nav-categoria" role="tabpanel"aria-labelledby="nav-categoria-tab">
+            <label for="basic-url">Seleccione la categoria del obejto:</label>
             <div class="input-group mb-1">
               <select class="custom-select" id="categoria">
                 <option selected>Elige una opción</option>
@@ -35,52 +47,46 @@
               </select>
             </div>
           </div>
-          <!--Filtro fecha-->
-          <div class="p-3">
-            <label for="basic-url">Fecha:</label>
-            <div>
+
+          <!--Filtro Estado-->
+          <div class="tab-pane fade m-3" id="nav-estado" role="tabpanel" aria-labelledby="nav-estado-tab">
+            <label for="basic-url">Seleccione el estado del obejto:</label>
+            <div class="input-group"> 
+              <select class="custom-select" id="categoria">
+                <option selected>Elige una opción</option>
+                <option value="1">Reportado</option>
+                <option value="2">Pendiente</option>
+                <option value="3">Entregado</option>
+              </select>
+            </div>
+          </div>
+
+          <!--Filtro Fecha-->
+          <div class="tab-pane fade" id="nav-fecha" role="tabpanel" aria-labelledby="nav-fecha-tab">
+            <div class="mt-2">
               <label for="basic-url">Desde:</label>
               <input class="form-control" type="datetime-local" id="cuandoSeEncontro1">
               <label for="basic-url">Hasta</label>
               <input class="form-control" type="datetime-local" id="cuandoSeEncontro2">
             </div>
-            <div class="p-3">
-              <label for="basic-url">ID</label>
-              <input type="text" class="form-control" id="idObjeto">
-            </div>
-            <div class="p-3">
-              <button type="button" class="btn btn-secondary btn-general mb-4"><i
-                  class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
-            </div>
           </div>
 
-        </div>
 
+          <!--Filtro ID-->
+          <div class="tab-pane fade" id="nav-id" role="tabpanel" aria-labelledby="nav-id-tab">
+            <label class="mt-2" for="basic-url">Ingrese el ID del objeto:</label>
+            <input type="text" class="form-control m-2" id="idObjeto">
+          </div>
 
-        <div class="col">
-          <!--Ordenar resultados-->
-          <label for="basic-url">Ordenar por:</label>
-          <!--Por Categoria-->
-          <div class="p-3">
-            <label for="basic-url">Categoria:</label>
-            <div class="input-group mb-1">
-              <select class="custom-select" id="categoria">
-                <option selected>Elige una opción</option>
-                <option value="1">Alfabeticamente</option>
-                <option value="2">Mas viejos</option>
-                <option value="3">Mas nuevos</option>
-              </select>
-            </div>
-          </div>
-          <div class="p-3">
-            <div class="p-3">
-              <button type="button" class="btn btn-secondary btn-general mb-4"><i
-                  class="fa fa-chevron-circle-right pr-2"></i>Ordenar</button>
-            </div>
-          </div>
+        <!--Boton Filtrar-->
+
+        <div class="p-3">
+          <button type="button" class="btn btn-secondary btn-general mb-4"><i
+              class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
         </div>
       </div>
 
+      <!--Empieza la lista-->
 
       <div>
         <!--Lista de objetos registrados en base de datos-->
@@ -108,6 +114,10 @@
                         This
                         content is a little longer.</p>
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <div>
+                      <button type="button" class="btn btn-secondary btn-general mb-4"><i
+                        class="fas fa-edit pr-2"></i>Editar</button>
                     </div>
                   </div>
                 </div>

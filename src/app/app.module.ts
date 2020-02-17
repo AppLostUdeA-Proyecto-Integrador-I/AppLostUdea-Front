@@ -15,7 +15,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
+import { AuthService } from './auth.service';
 
 // agregar las credenciales de la BD
 const config = {
@@ -37,22 +39,24 @@ const config = {
       EncontreObjetoComponent,
       BuscarObjetoComponent,
       SidebarComponent,
+      EditarobjetoComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       //Initialize
-     AngularFireModule.initializeApp(config),
-     AngularFirestoreModule, // firestore
-     AngularFireAuthModule, // auth
-     AngularFireStorageModule, // storage
+      AngularFireModule.initializeApp(config),
+       AngularFirestoreModule, // firestore
+      AngularFireAuthModule, // auth
+      AngularFireStorageModule, // storage
       RouterModule,
       MDBBootstrapModule.forRoot()
    ],
-  // declarations: [AppComponent],
-   providers: [],
+   providers: [
+   ],
    bootstrap: [
       AppComponent
-   ]})
+   ]
+})
 export class AppModule { }
 

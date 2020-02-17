@@ -31,7 +31,19 @@
           </div>
         </div>
         <div class="p-3">
-          <label for="basic-url">Documento de quien lo encontró</label>
+          <label for="basic-url">Tipo de documento</label>
+          <div class="input-group mb-1">
+            <select class="custom-select" id="categoria">
+              <option selected>Elige una opción</option>
+              <option value="1">Cédula</option>
+              <option value="2">Tarjeta de Identidad</option>
+              <option value="3">Cédula de Extranjeria</option>
+              <option value="3">Pasaporte</option>
+            </select>          
+          </div>
+        </div>
+        <div class="p-3">
+          <label for="basic-url">Número de documento</label>
           <div class="input-group mb-1">
             <input type="text" class="form-control" id="dondeSeEncontro">
           </div>
