@@ -60,18 +60,18 @@ a:focus {
     min-width: 250px;
     max-width: 250px;
     background: rgb(255, 255, 255);
-    color: rgb(62, 126, 73);
+    color: rgb(1, 96, 45);
     transition: all 0.3s;
 }
 .navbarHeader{
     color: #fff
 }
 .navbarUser{
-    color: rgb(62, 126, 73);
+    color: rgb(1, 96, 45);
 }
 .toggleButton{
-    background-color: rgb(62, 126, 73);
-    border-color: rgb(62, 126, 73);
+    background-color: rgb(1, 96, 45);
+    border-color: rgb(1, 96, 45);
 }
 
 #sidebar.active {
@@ -85,7 +85,7 @@ a:focus {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid rgb(62, 126, 73);
+    border-bottom: 1px solid rgb(1, 96, 45);
 }
 
 #sidebar ul p {
@@ -100,14 +100,14 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    color: rgb(62, 126, 73);
+    color: rgb(1, 96, 45);
     background: #fff;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: rgb(62, 126, 73);
+    background: rgb(1, 96, 45);
 }
 
 a[data-toggle="collapse"] {
@@ -125,7 +125,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: rgb(62, 126, 73);
+    background: rgb(1, 96, 45);
 }
 
 ul.CTAs {
@@ -142,12 +142,12 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: rgb(62, 126, 73);
+    color: rgb(1, 96, 45);
 }
 
 a.article,
 a.article:hover {
-    background: rgb(62, 126, 73) !important;
+    background: rgb(1, 96, 45) !important;
     color: #fff !important;
 }
 

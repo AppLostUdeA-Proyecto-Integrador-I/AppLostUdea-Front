@@ -13,10 +13,11 @@
         <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
       </div>
 
-        <!--Filtrar resultados-->
+      <!--Filtrar resultados-->
 
-        <h4>Filtrar:</h4>
+      <h4>Filtrar:</h4>
 
+      <div class="border p-2 m-2">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-categoria-tab" data-toggle="tab" href="#nav-categoria"
@@ -32,7 +33,8 @@
 
         <div class="tab-content" id="nav-tabContent">
           <!--Filtro Categoria-->
-          <div class="tab-pane fade show active m-3" id="nav-categoria" role="tabpanel"aria-labelledby="nav-categoria-tab">
+          <div class="tab-pane fade show active m-3" id="nav-categoria" role="tabpanel"
+            aria-labelledby="nav-categoria-tab">
             <label for="basic-url">Seleccione la categoria del obejto:</label>
             <div class="input-group mb-1">
               <select class="custom-select" id="categoria">
@@ -51,7 +53,7 @@
           <!--Filtro Estado-->
           <div class="tab-pane fade m-3" id="nav-estado" role="tabpanel" aria-labelledby="nav-estado-tab">
             <label for="basic-url">Seleccione el estado del obejto:</label>
-            <div class="input-group"> 
+            <div class="input-group">
               <select class="custom-select" id="categoria">
                 <option selected>Elige una opción</option>
                 <option value="1">Reportado</option>
@@ -74,18 +76,20 @@
 
           <!--Filtro ID-->
           <div class="tab-pane fade" id="nav-id" role="tabpanel" aria-labelledby="nav-id-tab">
-            <label class="mt-2" for="basic-url">Ingrese el ID del objeto:</label>
-            <input type="text" class="form-control m-2" id="idObjeto">
+            <div class="pt-2">
+            <label class="m-2" for="basic-url">Ingrese el ID del objeto:</label>
+            <input type="text" class="form-control" id="idobjeto" >
+          </div>
           </div>
 
-        <!--Boton Filtrar-->
+          <!--Boton Filtrar-->
 
-        <div class="p-3">
-          <button type="button" class="btn btn-secondary btn-general mb-4"><i
-              class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
+          <div class="p-3">
+            <button type="button" class="btn btn-secondary btn-general mb-4"><i
+                class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
+          </div>
         </div>
       </div>
-
       <!--Empieza la lista-->
 
       <div>
@@ -117,7 +121,7 @@
                     </div>
                     <div>
                       <button type="button" class="btn btn-secondary btn-general mb-4"><i
-                        class="fas fa-edit pr-2"></i>Editar</button>
+                          class="fas fa-edit pr-2"></i>Editar</button>
                     </div>
                   </div>
                 </div>
