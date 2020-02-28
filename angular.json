@@ -33,7 +33,7 @@
               "node_modules/animate.css/animate.css",
               "src/styles.css"
             ],
-            "scripts": [  
+            "scripts": [
               "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/jquery/dist/jquery.min.js",
@@ -132,6 +132,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AppLostUdeA"
+    }
+  },
+  "defaultProject": "AppLostUdeA",
+  "cli": {
+    "analytics": "13f4e8d1-f73e-49d7-9b32-0132d987c226"
+  }
 }

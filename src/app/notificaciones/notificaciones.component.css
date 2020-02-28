@@ -10,10 +10,6 @@
     h1{
         font-size: x-large;
     }
-    .colornav{
-        color: rgb(1, 96, 45) !important;
-    }
-
    }
    @media (min-width: 768px) { 
 

@@ -13,40 +13,89 @@
         <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
       </div>
 
-      <div>
-        <!--Filtros de busqueda-->
-        <label for="basic-url">Filtrar por:</label>
-        <div class="p-3">
-          <!--Filtro palabra-->
-          <label for="basic-url">Palabra:</label>
-          <input type="text" class="form-control shadow-sm" placeholder="Palabra" aria-label="Palabra"
-            aria-describedby="basic-addon1">
-        </div>
-        <!--Filtro Categoria-->
-        <div class="p-3">
-          <label for="basic-url">Categoria:</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">TIP</option>
-              <option value="2">Documento/Tarjeta</option>
-              <option value="3">Llaves</option>
-              <option value="3">PC/Celular/Tablet</option>
-              <option value="3">Ropa</option>
-              <option value="3">Equipo deportivo</option>
-              <option value="3">Bicicleta</option>
-            </select>
+      <!--Filtrar resultados-->
+
+      <h4>Filtrar:</h4>
+
+      <div class="border p-2 m-2">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-categoria-tab" data-toggle="tab" href="#nav-categoria"
+              role="tab" aria-controls="nav-categoria" aria-selected="true">Categoria</a>
+            <a class="nav-item nav-link" id="nav-estado-tab" data-toggle="tab" href="#nav-estado" role="tab"
+              aria-controls="nav-estado" aria-selected="false">Estado</a>
+            <a class="nav-item nav-link" id="nav-fecha-tab" data-toggle="tab" href="#nav-fecha" role="tab"
+              aria-controls="nav-fecha" aria-selected="false">Fecha</a>
+            <a class="nav-item nav-link" id="nav-id-tab" data-toggle="tab" href="#nav-id" role="tab"
+              aria-controls="nav-id" aria-selected="false">ID</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <!--Filtro Categoria-->
+          <div class="tab-pane fade show active m-3" id="nav-categoria" role="tabpanel"
+            aria-labelledby="nav-categoria-tab">
+            <label for="basic-url">Seleccione la categoria del obejto:</label>
+            <div class="input-group mb-1">
+              <select class="custom-select" id="categoria">
+                <option selected>Elige una opción</option>
+                <option value="1">TIP</option>
+                <option value="2">Documento/Tarjeta</option>
+                <option value="3">Llaves</option>
+                <option value="4">PC/Celular/Tablet</option>
+                <option value="5">Ropa</option>
+                <option value="6">Equipo deportivo</option>
+                <option value="7">Bicicleta</option>
+              </select>
+            </div>
+          </div>
+
+          <!--Filtro Estado-->
+          <div class="tab-pane fade m-3" id="nav-estado" role="tabpanel" aria-labelledby="nav-estado-tab">
+            <label for="basic-url">Seleccione el estado del obejto:</label>
+            <div class="input-group">
+              <select class="custom-select" id="categoria">
+                <option selected>Elige una opción</option>
+                <option value="1">Reportado</option>
+                <option value="2">Pendiente</option>
+                <option value="3">Entregado</option>
+              </select>
+            </div>
+          </div>
+
+          <!--Filtro Fecha-->
+          <div class="tab-pane fade" id="nav-fecha" role="tabpanel" aria-labelledby="nav-fecha-tab">
+            <div class="mt-2">
+              <label for="basic-url">Desde:</label>
+              <input class="form-control" type="datetime-local" id="cuandoSeEncontro1">
+              <label for="basic-url">Hasta</label>
+              <input class="form-control" type="datetime-local" id="cuandoSeEncontro2">
+            </div>
+          </div>
+
+
+          <!--Filtro ID-->
+          <div class="tab-pane fade" id="nav-id" role="tabpanel" aria-labelledby="nav-id-tab">
+            <div class="pt-2">
+              <label class="m-2" for="basic-url">Ingrese el ID del objeto:</label>
+              <input type="text" class="form-control" id="idobjeto">
+            </div>
+          </div>
+
+          <!--Boton Filtrar-->
+
+          <div class="p-3">
+            <button type="button" class="btn btn-secondary btn-general mb-4"><i
+                class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
           </div>
         </div>
-        <!--Filtro fecha-->
-        <div class="p-3">
-          <label for="basic-url">Fecha:</label>
-          <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
-        </div>
+      </div>
+      <!--Empieza la lista-->
 
-
+      <div>
         <!--Lista de objetos registrados en base de datos-->
-        <div class="d-flex justify-content-center scrollbar scrollbar-primary" style="background-color:rgb(247, 247, 247);">
+        <div class="d-flex justify-content-center scrollbar scrollbar-primary"
+          style="background-color:rgb(247, 247, 247);">
           <ul>
             <!--Ciclo que muestra cada elemento en vector "cosita"-->
             <li *ngFor="let cosa of cosita" class="card-group">
@@ -70,6 +119,10 @@
                         content is a little longer.</p>
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
+                    <div>
+                      <button type="button" class="btn btn-secondary btn-general mb-4"><i
+                          class="fas fa-edit pr-2"></i>Editar</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -77,10 +130,24 @@
           </ul>
         </div>
 
-        <!--Cerrar sesión-->
-        <div class="row align-items-end col align-self-start pb-3 pt-5">
-          <button type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cerrar
-            Sesión</button>
+
+
+        <div class="row">
+
+          <!--Cerrar sesión-->
+          <div class="col  p-3">
+            <button [routerLink]="['/login']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cerrar
+              Sesión</button>
+          </div>
+
+          <div class="col"></div>
+
+          <!--Home-->
+          <div class="col p-3">
+            <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
+              class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Home</button>
+          </div>
+
         </div>
       </div>
     </div>

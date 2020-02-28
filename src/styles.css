@@ -3,22 +3,25 @@
 
 
 body {
-    background-color: #348F41;
+    /*background-color: rgb(146, 190, 153);*/
+    background-color: rgb(238, 238, 238);
     font-size: 16px;
     }
 
 .card{
-    background-color: rgb(247, 247, 247);
+    /*background-color: rgb(243, 225, 225);*/
+    background-color: rgb(255, 255, 255);
 }
 
+
 .btn-general{
-    background-color: rgb(62, 126, 73);
+    background-color: rgb(1, 96, 45);
     font-weight: 500 ;
     box-shadow: 0 8px 16px 0 rgba(20, 20, 20, 0.2), 0 6px 20px 0 rgba(20, 20, 20, 0.19);
 }
 
 .scrollbar {
-    height: 400px;
+    height: 700px;
     width: 100%;
     background: #fff;
     overflow-y: scroll;
@@ -32,7 +35,7 @@ body {
 h1{
     text-shadow: 2px 2px 3px rgb(173, 172, 172);
     font-weight: bold;
-    color: #348F41;
+    color: rgb(1, 96, 45);
   }
 
 ul{
