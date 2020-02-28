@@ -77,9 +77,9 @@
           <!--Filtro ID-->
           <div class="tab-pane fade" id="nav-id" role="tabpanel" aria-labelledby="nav-id-tab">
             <div class="pt-2">
-            <label class="m-2" for="basic-url">Ingrese el ID del objeto:</label>
-            <input type="text" class="form-control" id="idobjeto" >
-          </div>
+              <label class="m-2" for="basic-url">Ingrese el ID del objeto:</label>
+              <input type="text" class="form-control" id="idobjeto">
+            </div>
           </div>
 
           <!--Boton Filtrar-->
@@ -130,10 +130,24 @@
           </ul>
         </div>
 
-        <!--Cerrar sesión-->
-        <div class="row align-items-end col align-self-start pb-3 pt-5">
-          <button type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cerrar
-            Sesión</button>
+
+
+        <div class="row">
+
+          <!--Cerrar sesión-->
+          <div class="col  p-3">
+            <button [routerLink]="['/login']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cerrar
+              Sesión</button>
+          </div>
+
+          <div class="col"></div>
+
+          <!--Home-->
+          <div class="col p-3">
+            <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
+              class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Home</button>
+          </div>
+
         </div>
       </div>
     </div>

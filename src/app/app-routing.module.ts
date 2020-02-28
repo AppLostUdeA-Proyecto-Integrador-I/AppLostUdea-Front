@@ -6,6 +6,7 @@ import { EncontreObjetoComponent } from './encontreobjeto/encontreobjeto.compone
 import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
+import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'editarobjeto',
     component: EditarobjetoComponent
+  },
+  {
+    path: 'notificaciones',
+    component: NotificacionesComponent
   },
   {
     path: '',

@@ -12,15 +12,15 @@
 
   <div>
     <div class="p-3">
-      <button type="button" class="btn btn-secondary btn-general"><i class="fa fa-chevron-circle-right pr-2">
-      </i>Encontré un Objeto</button>
+      <button [routerLink]="['/encontreobjeto']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general">
+        <i class="fa fa-chevron-circle-right pr-2"></i>Encontré un Objeto</button>
     </div>
     <div class="p-3">
-      <button type="button" class="btn btn-secondary btn-general"><i class="fa fa-chevron-circle-right pr-2">
+      <button [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general"><i class="fa fa-chevron-circle-right pr-2">
       </i>Buscar un Objeto</button>
     </div>
     <div class="row align-items-end col align-self-start pb-3 pt-5">
-      <button type="button" class="btn btn-secondary btn-general" (click)="auth.signOut()"><i class="fa fa-times-circle pr-2">
+      <button [routerLink]="['/login']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general" (click)="auth.signOut()"><i class="fa fa-times-circle pr-2">
       </i>Cerrar Sesión</button>
     </div>
   </div>

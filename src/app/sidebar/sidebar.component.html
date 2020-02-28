@@ -37,28 +37,16 @@
 
             <ul class="list-unstyled components ">
                 <li class="active">
-                    <a href="#homeSubmenu" aria-expanded="false">Home</a>
+                    <a [routerLink]="['/home']" routerLinkActive="router-link-active"  aria-expanded="false">Home</a>
                 </li>
                 <li class="navbarUser">
-                    <a href="#">Buscar Objeto</a>
+                    <a [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active" >Buscar Objeto</a>
                 </li>
                 <li class="navbarUser">
-                    <a href="#">Encontre Objeto</a>
+                    <a [routerLink]="['/encontreobjeto']" routerLinkActive="router-link-active" >Encontre Objeto</a>
                 </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                        class="dropdown-toggle navbarUser">Notificaciónes</a>
-                    <ul class="collapse list-unstyled navbarHeader" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
+                <li class="navbarUser">
+                    <a [routerLink]="['/notificaciones']" routerLinkActive="router-link-active" >Notificaciónes</a>
                 </li>
                 <li class="navbarUser">
                     <a href="#">Estadisticas</a>
@@ -66,7 +54,7 @@
             </ul>
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Cerrar Sesión</a>
+                    <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="article">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
