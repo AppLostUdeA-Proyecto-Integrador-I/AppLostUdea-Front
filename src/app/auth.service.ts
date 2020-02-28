@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 //import { User } from './user.model.ts'; // optional
 
+import * as firebase from 'firebase'
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -13,7 +14,6 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  
   user$: Observable<any>;
   constructor(
     private afAuth: AngularFireAuth,
@@ -22,7 +22,7 @@ export class AuthService {
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
-          // Logged in
+        // Logged in
         if (user) {
           return this.afs.doc<any>(`users/${user.uid}`).valueChanges();
         } else {
@@ -31,10 +31,43 @@ export class AuthService {
         }
       })
     );
+    
   }
 
   async googleSignin() { //Activa la ventana emergente de inicio de sesión de Google y autentica al usuario
-    const provider = new auth.GoogleAuthProvider();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    firebase.auth().signInWithPopup(provider).then((result) => {
+      
+      // This gives you a Google Access Token.
+      //var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      //validacion de correo univercitario
+      // si lo quiere hacer mas bonito llame un metodo que lo valide y retorne un booleano
+      //passed, stringified email login
+      var emailString = user.email
+      //the domain you want to whitelist
+      var yourDomain = '@udea.edu.co';
+      //check the x amount of characters including and after @ symbol of passed user login.
+      //This means '@google.com' must be the final set of characters in the attempted login 
+      var domain = emailString.substr(emailString.length - yourDomain.length);
+      //I send the user back to the login screen if domain does not match 
+      if (domain != yourDomain) {
+        //buscar como borrar de la base de datos :V
+        alert("te dije que con correo de la U")
+        
+        this.deleteUser()
+
+      }
+      else {
+        this.router.navigate(['/home']);
+      }
+
+
+
+    });
     provider.setCustomParameters({
       hd: "udea.edu.co"  //parametro hd para limitar las cuentas que se muestran en la interfaz de usuario de Google
     });
@@ -45,22 +78,33 @@ export class AuthService {
     //Establece los datos del usuario en firestore al iniciar sesión
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
-    const data = { 
-      uid: user.uid, 
-      email: user.email, 
-      displayName: user.displayName, 
-      rol: user.rol='usuario',
-    } 
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      rol: user.rol = 'usuario',
+    }
 
     return userRef.set(data, { merge: true })
 
   }
 
   async signOut() {
-    await this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
+    //await this.afAuth.auth.signOut();
+    return this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+    })
+    //this.router.navigate(['']);
   }
 
-}
-  
+  async deleteUser(){
+    var user = firebase.auth().currentUser;
+    user.delete().then(function() {
+      // User deleted.
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
 
+
+}
