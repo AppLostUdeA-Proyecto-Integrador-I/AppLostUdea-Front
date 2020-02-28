@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { EncontreObjetoComponent } from './encontreobjeto/encontreobjeto.component';
 import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
+
 
 const routes: Routes = [
   {
@@ -21,6 +24,14 @@ const routes: Routes = [
   {
     path: 'buscarobjeto',
     component: BuscarObjetoComponent
+  },
+  {
+    path: 'sidebar',
+    component: SidebarComponent
+  },
+  {
+    path: 'editarobjeto',
+    component: EditarobjetoComponent
   },
   {
     path: '',
