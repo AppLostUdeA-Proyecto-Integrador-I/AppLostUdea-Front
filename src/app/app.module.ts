@@ -10,6 +10,7 @@ import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // importar los módulos que planeamos usar en nuestra aplicación Auth and Firestor
 import { AngularFireModule } from '@angular/fire';
@@ -52,7 +53,8 @@ const config = {
      AngularFireAuthModule, // auth
      AngularFireStorageModule, // storage
       RouterModule,
-      MDBBootstrapModule.forRoot()
+      MDBBootstrapModule.forRoot(),
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [
