@@ -20,6 +20,7 @@ import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { AuthService } from './auth.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 // agregar las credenciales de la BD
 const config = {
@@ -42,7 +43,8 @@ const config = {
       BuscarObjetoComponent,
       SidebarComponent,
       EditarobjetoComponent,
-      NotificacionesComponent
+      NotificacionesComponent,
+      EstadisticasComponent
    ],
    imports: [
       BrowserModule,

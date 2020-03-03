@@ -9,6 +9,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -38,16 +39,16 @@ export class AuthService {
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    firebase.auth().signInWithPopup(provider).then((result) => {
-      
+      await firebase.auth().signInWithPopup(provider).then((result) => {
       // This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
-      var user = result.user;
+      
+      var user = result.user; 
       //validacion de correo univercitario
       // si lo quiere hacer mas bonito llame un metodo que lo valide y retorne un booleano
       //passed, stringified email login
-      var emailString = user.email
+      var emailString = user.email;
       //the domain you want to whitelist
       var yourDomain = '@udea.edu.co';
       //check the x amount of characters including and after @ symbol of passed user login.
@@ -56,18 +57,19 @@ export class AuthService {
       //I send the user back to the login screen if domain does not match 
       if (domain != yourDomain) {
         //buscar como borrar de la base de datos :V
-        alert("te dije que con correo de la U")
-        
-        this.deleteUser()
-
+        alert("te dije que con correo de la U");
+        this.deleteUser();
       }
       else {
         this.router.navigate(['/home']);
       }
+    }).catch(error=>{
 
-
-
+      console.log(error);
+      
     });
+
+
     provider.setCustomParameters({
       hd: "udea.edu.co"  //parametro hd para limitar las cuentas que se muestran en la interfaz de usuario de Google
     });
@@ -90,7 +92,7 @@ export class AuthService {
   }
 
   async signOut() {
-    //await this.afAuth.auth.signOut();
+    //await this.afAuth.auth.signOut();  
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     })
