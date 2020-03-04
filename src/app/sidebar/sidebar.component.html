@@ -1,6 +1,6 @@
 <div class="wrapper">
   <!-- Sidebar  -->
-  <nav id="sidebar" [class.active]="active">
+  <nav id="sidebar" [class.active]="active" class="border bordeSidebar shadow">
     <div class="sidebar-header">
       <h3 class="navbarHeader">Bienvenido</h3>
     </div>
@@ -30,12 +30,12 @@
         <a [routerLink]="['/notificaciones']" routerLinkActive="router-link-active">Notificaciónes</a>
       </li>
       <li class="navbarUser">
-        <a href="#">Estadisticas</a>
+        <a [routerLink]="['/home']" routerLinkActive="router-link-active">Estadisticas</a>
       </li>
     </ul>
     <ul class="list-unstyled CTAs">
       <li>
-        <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="article">Cerrar Sesión</a>
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="article" >Cerrar Sesión</a>
       </li>
     </ul>
   </nav>

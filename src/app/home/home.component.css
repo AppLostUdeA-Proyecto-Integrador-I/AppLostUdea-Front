@@ -11,10 +11,3 @@
         font-size: x-large;
     }
    }
-   @media (min-width: 768px) {
-
-    .container{
-        position: center;
-    }
-
-    }

@@ -1,4 +1,4 @@
-<div class="text-center container p-3">
+<div class="text-center container containerPrincipal p-3">
   <div class="card shadow-lg d-flex p-3">
     <div class="p-4">
       <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
@@ -12,10 +12,6 @@
       <div class="p-3">
         <button [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general"><i class="fa fa-chevron-circle-right pr-2">
           </i>Buscar un Objeto</button>
-      </div>
-      <div class="row align-items-end col align-self-start pb-3 pt-5">
-        <button [routerLink]="['/login']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general" (click)="auth.signOut()"><i class="fa fa-times-circle pr-2">
-          </i>Cerrar Sesión</button>
       </div>
     </div>
   </div>

@@ -1,23 +1,9 @@
 
 <div class="d-inline-flex w-100">
   <div class="">
-    <app-sidebar class="navbar"></app-sidebar>
+    <app-sidebar class="navbar" *ngIf="router.url != '/login'"></app-sidebar>
   </div>
   <div class="w-100">
     <router-outlet></router-outlet>
   </div>
 </div>
-
-<!--
-
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-  </div> -->
