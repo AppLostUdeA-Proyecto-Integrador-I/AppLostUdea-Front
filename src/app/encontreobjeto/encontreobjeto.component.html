@@ -1,103 +1,82 @@
-<!doctype html>
+<div class="text-center container containerPrincipal">
+  <div class="card shadow-lg d-flex p-3 m-3">
+    <div class="p-4">
+      <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
+    </div>
 
-<head>
-  <title>AppLostUdeA</title>
-</head>
-
-<body>
-  <!--Titulo del componente-->
-  <div class="text-center container">
-    <div class="card shadow-lg d-flex">
-      <div class="p-4">
-        <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
+    <div>
+      <div class="p-3">
+        <label for="basic-url">¿Qué encontraste?</label>
+        <div class="input-group mb-1">
+          <input type="text" class="form-control" id="queEncontraste">
+        </div>
       </div>
-
-      <div>
-        <!--Inicio del formulario de registro-->
-        <!--Nombre del objeto-->
-        <div class="p-3">
-                    <label for="basic-url">¿Qué encontraste?</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="queEncontraste">
-          </div>
+      <div class="p-3">
+        <label for="basic-url">¿Dónde se encontró?</label>
+        <div class="input-group mb-1">
+          <input type="text" class="form-control" id="dondeSeEncontro">
         </div>
-        <!--Donde encontro el objeto-->
-        <div class="p-3">
-          <label for="basic-url">¿Dónde se encontró?</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeEncontro">
-          </div>
+      </div>
+      <div class="p-3">
+        <label for="basic-url">¿Quien lo encontró?</label>
+        <div class="input-group mb-1">
+          <input type="text" class="form-control" id="dondeSeEncontro">
         </div>
-        <!--Nombre de quien encontro el objeto-->
-        <div class="p-3">
-          <label for="basic-url">¿Quien lo encontró?</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeEncontro">
-          </div>
+      </div>
+      <div class="p-3">
+        <label for="basic-url">Tipo de documento</label>
+        <div class="input-group mb-1">
+          <select class="custom-select" id="categoria">
+            <option selected>Elige una opción</option>
+            <option value="1">Cédula</option>
+            <option value="2">Tarjeta de Identidad</option>
+            <option value="3">Cédula de Extranjeria</option>
+            <option value="3">Pasaporte</option>
+          </select>
         </div>
-        <!--Tipo de documento de quien lo encontró-->
-        <div class="p-3">
-          <label for="basic-url">Tipo de documento</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">Cédula</option>
-              <option value="2">Tarjeta de Identidad</option>
-              <option value="3">Cédula de Extranjeria</option>
-              <option value="3">Pasaporte</option>
-            </select>          
-          </div>
+      </div>
+      <div class="p-3">
+        <label for="basic-url">Número de documento</label>
+        <div class="input-group mb-1">
+          <input type="text" class="form-control" id="dondeSeEncontro">
         </div>
-        <!--Número de documento de quien lo encontró-->
-        <div class="p-3">
-          <label for="basic-url">Número de documento</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeEncontro">
-          </div>
+      </div>
+      <div class="p-3">
+        <label for="basic-url">¿Cuando se encontró?</label>
+        <div class="input-group mb-1">
+          <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
         </div>
-        <!--Cuando se encontró-->
-        <div class="p-3">
-          <label for="basic-url">¿Cuando se encontró?</label>
-          <div class="input-group mb-1">
-            <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
-          </div>
+      </div>
+      <div class="p-3">
+        <label for="basic-url">Categoría</label>
+        <div class="input-group mb-1">
+          <select class="custom-select" id="categoria">
+            <option selected>Elige una opción</option>
+            <option value="1">TIP</option>
+            <option value="2">Documento/Tarjeta</option>
+            <option value="3">Llaves</option>
+            <option value="3">PC/Celular/Tablet</option>
+            <option value="3">Ropa</option>
+            <option value="3">Equipo deportivo</option>
+            <option value="3">Bicicleta</option>
+          </select>
         </div>
-        <!--Categoria del objeto que se encontró-->
-        <div class="p-3">
-          <label for="basic-url">Categoría</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">TIP</option>
-              <option value="2">Documento/Tarjeta</option>
-              <option value="3">Llaves</option>
-              <option value="3">PC/Celular/Tablet</option>
-              <option value="3">Ropa</option>
-              <option value="3">Equipo deportivo</option>
-              <option value="3">Bicicleta</option>
-            </select>          
-          </div>
+      </div>
+      <div class="p-3">
+        <button type="button" class="btn btn-secondary btn-general mb-4"><i
+            class="fa fa-camera pr-2"></i>Agregar</button>
+      </div>
+      <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar"
+        aria-label="Toolbar with button groups">
+        <div class="btn-group m-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary btn-general"><i
+              class="fa fa-check-circle pr-2"></i>Publicar</button>
         </div>
-        <!--Agregar imagen del objeto-->
-        <div class="p-3">
-          <button type="button" class="btn btn-secondary btn-general mb-4"><i class="fa fa-camera pr-2"></i>Agregar</button>
-        </div>
-        <!--Publicar objeto perdido-->
-        <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group m-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary btn-general"><i class="fa fa-check-circle pr-2"></i>Publicar</button>
-          </div>
-          <!--Cancelar y volver al Home-->
-          <div class="btn-group m-2" role="group" aria-label="Second group">
-            <button [routerLink]="['/home']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cancelar</button>
-          </div>
-        </div>
-        <!--Cerrar sesión-->
-        <div class="row align-items-end col align-self-start pb-3 pt-5">
-          <button [routerLink]="['/login']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cerrar
-            Sesión</button>
+        <div class="btn-group m-2" role="group" aria-label="Second group">
+          <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cancelar</button>
         </div>
       </div>
     </div>
   </div>
-</body>
+</div>

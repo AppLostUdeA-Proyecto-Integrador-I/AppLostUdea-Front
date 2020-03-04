@@ -8,6 +8,10 @@ body {
 
 }
 
+.bordeSidebar{
+    border-color: rgb(231, 229, 229) !important;
+}
+
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;

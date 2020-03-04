@@ -39,7 +39,7 @@ export class AuthService {
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-      await firebase.auth().signInWithPopup(provider).then((result) => {
+    await firebase.auth().signInWithPopup(provider).then((result) => {
       // This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
@@ -57,8 +57,9 @@ export class AuthService {
       //I send the user back to the login screen if domain does not match 
       if (domain != yourDomain) {
         //buscar como borrar de la base de datos :V
-        alert("te dije que con correo de la U");
-        this.deleteUser();
+        alert("te dije que con correo de la U")
+        this.deleteUser()
+
       }
       else {
         this.router.navigate(['/home']);

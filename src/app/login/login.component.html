@@ -1,31 +1,18 @@
-  <div class="text-center">
-    <img src="../../assets/img/logosimbolo-vertical.png" width="200" height="180" class="img-fluid p-2" alt="Responsive image">
-  </div>
-  <div class="text-center container">
-    <!-- User NOT logged in -->
-  <ng-template #guest>
-      <h3>Howdy, GUEST</h3>
-      <p>Login to get started...</p>
-      
-      <button (click)="auth.googleSignin()">
-          <i class="fa fa-google"></i> Connect Google
-      </button>
-  </ng-template>
-  
-  
-  <!-- User logged in -->
-  <ng-template #authenticated>
-      <div *ngIf="auth.user$ | async as user">
-          <h3>Bienvenido/a, {{ user.displayName }}</h3>
-          <button (click)="auth.signOut()">Logout</button>
-      </div>
-  </ng-template>
-    <div class="row">
-      <div class="col">
-        <div class="card shadow-lg mx-auto">
-            <h1>App Lost UdeA <i class="fa fa-search"></i></h1>
-            <button type="button" class="btn btn-secondary btn-general" (click)="auth.googleSignin()"><i class="fab fa-google"></i> &nbsp;Ingresar</button>
-        </div>
+<div class="text-center">
+  <img src="../../assets/img/logosimbolo-vertical.png" width="200" height="180" class="img-fluid p-2" alt="Responsive image">
+</div>
+<div class="text-center container">
+<!-- <ng-template #authenticated>
+    <div *ngIf="auth.user$ | async as user">
+        <h3>Bienvenido/a, {{ user.displayName }}</h3>
+        <button (click)="auth.signOut()">Logout</button>
+    </div>
+</ng-template> -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow-lg mx-auto">
+          <h1>App Lost UdeA <i class="fa fa-search"></i></h1>
+          <button type="button" class="btn btn-secondary btn-general" (click)="auth.googleSignin()"><i class="fab fa-google"></i> &nbsp;Ingresar</button>
       </div>
     </div>
   </div>

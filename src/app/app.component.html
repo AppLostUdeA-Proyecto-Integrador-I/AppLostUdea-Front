@@ -1,2 +1,9 @@
-<app-sidebar class="navbar" *ngIf="router.url != '/login'"></app-sidebar>
-<router-outlet></router-outlet>
+
+<div class="d-inline-flex w-100">
+  <div class="">
+    <app-sidebar class="navbar" *ngIf="router.url != '/login'"></app-sidebar>
+  </div>
+  <div class="w-100">
+    <router-outlet></router-outlet>
+  </div>
+</div>

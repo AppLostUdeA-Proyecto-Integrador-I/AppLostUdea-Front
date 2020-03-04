@@ -47,3 +47,11 @@ ul{
     padding: 0rem;
 }
 
+@media (min-width: 768px) {
+
+    .containerPrincipal{
+        position: center;
+        width: 50rem;
+    }
+
+    }
