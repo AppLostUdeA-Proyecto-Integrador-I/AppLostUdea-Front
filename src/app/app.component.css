@@ -1,3 +1,5 @@
-.navbar{
-    position: absolute;
+.navbar {
+  padding: 0 !important;
+  position: fixed;
+  z-index: 999;
 }

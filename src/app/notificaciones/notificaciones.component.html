@@ -1,68 +1,45 @@
-<!doctype html>
+<div class="text-center container containerPrincipal">
+  <div class="card shadow-lg d-flex p-3 m-3">
+    <div class="p-4">
+      <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
+    </div>
 
-<head>
-  <title>AppLostUdeA</title>
-</head>
-
-<body>
-  <div class="text-center container">
-    <div class="card shadow-lg d-flex p-3 m-3">
-      <div class="p-4">
-        <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
-      </div>
-
-      <!--Tabla-->
-      <div>
-        <div class="row">
-          <table class="table table-striped">
-            <thead>
+    <!--Tabla-->
+    <div>
+      <div class="row table-wrapper">
+        <table class="table table-striped m-2">
+          <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Country</th>
               <th scope="col">Area</th>
               <th scope="col">Population</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let country of COUNTRIES; index as i">
-              
-               <th scope="row">{{ i + 1 }}</th>
+
+              <th scope="row">{{ i + 1 }}</th>
               <td>
-                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"
+                  style="width: 20px">
                 {{ country.name }}
               </td>
               <td>{{ country.area | number }}</td>
-              <td>{{ country.population | number }}</td> 
+              <td>{{ country.population | number }}</td>
             </tr>
-            </tbody>
-          </table> 
+          </tbody>
+        </table>
+      </div>
 
-        </div>
 
-
-        <div class="row">
-
-          <!--Cerrar sesión-->
-          <div class="col  p-3">
-            <button [routerLink]="['/login']" routerLinkActive="router-link-active"  type="button" class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cerrar
-              Sesión</button>
-          </div>
-
-          <div class="col"></div>
-
-          <!--Home-->
-          <div class="col p-3">
-            <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
-              class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Home</button>
-          </div>
-
+      <div class="row">
+        <!--Home-->
+        <div class="col p-3">
+          <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
         </div>
       </div>
     </div>
   </div>
-
-
-  <div>
-    
-  </div>
-</body>
+</div>

@@ -10,6 +10,7 @@ import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // importar los módulos que planeamos usar en nuestra aplicación Auth and Firestor
 import { AngularFireModule } from '@angular/fire';
@@ -19,6 +20,7 @@ import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { AuthService } from './auth.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 // agregar las credenciales de la BD
 const config = {
@@ -41,7 +43,8 @@ const config = {
       BuscarObjetoComponent,
       SidebarComponent,
       EditarobjetoComponent,
-      NotificacionesComponent
+      NotificacionesComponent,
+      EstadisticasComponent
    ],
    imports: [
       BrowserModule,
@@ -52,7 +55,8 @@ const config = {
      AngularFireAuthModule, // auth
      AngularFireStorageModule, // storage
       RouterModule,
-      MDBBootstrapModule.forRoot()
+      MDBBootstrapModule.forRoot(),
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [
