@@ -35,7 +35,7 @@
     </ul>
     <ul class="list-unstyled CTAs">
       <li>
-        <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="article" >Cerrar Sesión</a>
+        <a (click)="auth.signOut()" class="article" >Cerrar Sesión</a>
       </li>
     </ul>
   </nav>
