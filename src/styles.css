@@ -10,6 +10,7 @@ body {
 
     }
 
+
 .card{
     /*background-color: rgb(243, 225, 225);*/
     background-color: rgb(255, 255, 255);
@@ -17,6 +18,13 @@ body {
     margin: 1rem;
 }
 
+.imgResponsive{
+
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    
+}
 
 .btn-general{
     background-color: rgb(1, 96, 45) !important;
@@ -51,7 +59,7 @@ ul{
 
     .containerPrincipal{
         position: center;
-        width: 50rem;
+        max-width: 50rem;
     }
 
     }
