@@ -16,11 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { AuthService } from './auth.service';
+import { MessagingService } from './service/messaging.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 // agregar las credenciales de la BD
 const config = {
@@ -54,11 +57,12 @@ const config = {
      AngularFirestoreModule, // firestore
      AngularFireAuthModule, // auth
      AngularFireStorageModule, // storage
+     AngularFireMessagingModule,//messagging
       RouterModule,
       MDBBootstrapModule.forRoot(),
       HttpClientModule
    ],
-   providers: [],
+   providers: [MessagingService, AsyncPipe],
    bootstrap: [
       AppComponent
    ]

@@ -25,14 +25,14 @@ export class AuthService {
       switchMap(user => {
         // Logged in
         if (user) {
-          return this.afs.doc<any>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc<any>(`usuario/${user.uid}`).valueChanges();
         } else {
           // Logged out
           return of(null);
         }
       })
     );
-    
+
   }
 
   async googleSignin() { //Activa la ventana emergente de inicio de sesión de Google y autentica al usuario
@@ -43,8 +43,8 @@ export class AuthService {
       // This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
-      
-      var user = result.user; 
+
+      var user = result.user;
       //validacion de correo univercitario
       // si lo quiere hacer mas bonito llame un metodo que lo valide y retorne un booleano
       //passed, stringified email login
@@ -52,9 +52,9 @@ export class AuthService {
       //the domain you want to whitelist
       var yourDomain = '@udea.edu.co';
       //check the x amount of characters including and after @ symbol of passed user login.
-      //This means '@google.com' must be the final set of characters in the attempted login 
+      //This means '@google.com' must be the final set of characters in the attempted login
       var domain = emailString.substr(emailString.length - yourDomain.length);
-      //I send the user back to the login screen if domain does not match 
+      //I send the user back to the login screen if domain does not match
       if (domain != yourDomain) {
         //buscar como borrar de la base de datos :V
         alert("te dije que con correo de la U")
@@ -67,7 +67,7 @@ export class AuthService {
     }).catch(error=>{
 
       console.log(error);
-      
+
     });
 
 
@@ -79,12 +79,11 @@ export class AuthService {
   }
   private updateUserData(user) {
     //Establece los datos del usuario en firestore al iniciar sesión
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
 
     const data = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
+      correo: user.email,
+      nombre: user.displayName,
       rol: user.rol = 'usuario',
     }
 
@@ -93,7 +92,7 @@ export class AuthService {
   }
 
   async signOut() {
-    //await this.afAuth.auth.signOut();  
+    //await this.afAuth.auth.signOut();
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     })

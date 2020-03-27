@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service'
 import { AuthService } from './../auth.service';
+import { MessagingService } from "../service/messaging.service";
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,18 @@ import { AuthService } from './../auth.service';
 })
 export class HomeComponent implements OnInit {
   data;
+  message;
 
 
-  constructor(private apiService: ApiServiceService, public auth: AuthService) {
+  constructor(private apiService: ApiServiceService, public auth: AuthService, private messagingService: MessagingService) {
     // this.getCategoriasjeje();
   }
 
   ngOnInit() {
+    const userId = 'user001';
+    this.messagingService.requestPermission(userId)
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
   }
 
   // getCategoriasjeje() {
