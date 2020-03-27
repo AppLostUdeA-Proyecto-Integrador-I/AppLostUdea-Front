@@ -62,6 +62,7 @@ export class AuthService {
 
       }
       else {
+        this.updateUserData(result.user);
         this.router.navigate(['/home']);
       }
     }).catch(error=>{
@@ -70,13 +71,8 @@ export class AuthService {
 
     });
 
-
-    provider.setCustomParameters({
-      hd: "udea.edu.co"  //parametro hd para limitar las cuentas que se muestran en la interfaz de usuario de Google
-    });
-    const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
   }
+
   private updateUserData(user) {
     //Establece los datos del usuario en firestore al iniciar sesión
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
@@ -92,7 +88,6 @@ export class AuthService {
   }
 
   async signOut() {
-    //await this.afAuth.auth.signOut();
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     })
