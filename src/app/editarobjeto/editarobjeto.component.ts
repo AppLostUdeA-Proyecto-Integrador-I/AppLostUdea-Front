@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarobjetoComponent implements OnInit {
 
-  optionValue;
+  optionValue: string;
+  options: any[] = [
+    { id: 1, name: 'Elije una opción' },
+    { id: 2, name: 'Reportado' },
+    { id: 3, name: 'Entregado' },
+  ];
 
   constructor() { }
 

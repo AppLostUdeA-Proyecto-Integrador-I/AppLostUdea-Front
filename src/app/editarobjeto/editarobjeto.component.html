@@ -6,6 +6,10 @@
       <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
     </div>
 
+    <div *ngIf="optionValue==options[2].name">
+      <h1>{{ optionValue }}</h1>
+    </div>
+
     <div class="row">
       <div class="col">
 
@@ -85,10 +89,8 @@
         <div class="p-3">
           <label for="basic-url">Estado del objeto:</label>
           <div class="input-group">
-            <select class="custom-select" type="text" id="categoria" ngModel="optionValue">
-              <option value="0" selected>Elige una opción</option>
-              <option value="1">Reportado</option>
-              <option value="2">Entregado</option>
+            <select class="custom-select" type="text" id="categoria" (change)="optionValue=$event.target.value">
+              <option [value]="option.id" *ngFor="let option of options">{{option.name}}</option>
             </select>
           </div>
         </div>

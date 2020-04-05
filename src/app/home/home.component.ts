@@ -11,6 +11,7 @@ import { MessagingService } from "../service/messaging.service";
 export class HomeComponent implements OnInit {
   data;
   message;
+  show : boolean = true;
 
 
   constructor(private apiService: ApiServiceService, public auth: AuthService, private messagingService: MessagingService) {
