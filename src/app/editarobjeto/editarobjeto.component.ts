@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarobjetoComponent implements OnInit {
 
+  optionValue;
+
   constructor() { }
 
   ngOnInit() {

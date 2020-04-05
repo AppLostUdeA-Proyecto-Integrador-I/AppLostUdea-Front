@@ -78,6 +78,7 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
 
     const data = {
+      uid: user.uid,
       correo: user.email,
       nombre: user.displayName,
       rol: user.rol = 'usuario',
@@ -91,7 +92,6 @@ export class AuthService {
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     })
-    //this.router.navigate(['']);
   }
 
   async deleteUser(){
