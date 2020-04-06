@@ -3,117 +3,114 @@
     <div class="p-4">
       <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
     </div>
+    <form ngform (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <div class="p-3">
+            <label for="basic-url">¿Qué encontraste?</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="nombreObjeto" required ng-Model="model.nombreObjeto" name="nombreObjeto"/>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">¿Cuando se encontró?</label>
+            <div class="input-group mb-1">
+              <input type="datetime" class="form-control" id="fechaEncontrado" required ng-Model="model.fechaEncontrado" name="fechaEncontrado"/>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">¿Dónde se encontró?</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="lugarEncontrado" required ng-Model="model.lugarEncontrado" name="lugarEncontrado"/>
+            </div>
+          </div>
 
-    <div class="row">
-
-      <div class="col">
-
-        <div class="p-3">
-          <label for="basic-url">¿Qué encontraste?</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="queEncontraste">
+          <div class="p-3">
+            <label for="basic-url">Categoría</label>
+            <div class="input-group mb-1">
+              <select type="text" class="custom-select" id="categoriasId" required ng-Model="model.categoriasId" name="categoriasId">
+                <option selected>Elige una opción</option>
+                <option value="1">TIP</option>
+                <option value="2">Documento/Tarjeta</option>
+                <option value="3">Llaves</option>
+                <option value="3">PC/Celular/Tablet</option>
+                <option value="3">Ropa</option>
+                <option value="3">Equipo deportivo</option>
+                <option value="3">Bicicleta</option>
+              </select>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">Lugar de reclamo</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="lugarDeReclamoId" required ng-Model="model.lugarDeReclamoId" name="lugarDeReclamoId"/>
+            </div>
           </div>
         </div>
-        <div class="p-3">
-          <label for="basic-url">¿Cuando se encontró?</label>
-          <div class="input-group mb-1">
-            <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">¿Dónde se encontró?</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeEncontro">
-          </div>
-        </div>
 
-        <div class="p-3">
-          <label for="basic-url">Categoría</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">TIP</option>
-              <option value="2">Documento/Tarjeta</option>
-              <option value="3">Llaves</option>
-              <option value="3">PC/Celular/Tablet</option>
-              <option value="3">Ropa</option>
-              <option value="3">Equipo deportivo</option>
-              <option value="3">Bicicleta</option>
-            </select>
+        <div class="col">
+          <div class="p-3">
+            <label for="basic-url">¿Quien lo encontró?</label>
+            <div class="input-group mb-1">
+              <span *ngIf="afAuth.auth.currentUser" class="form-control" id="quienLoEncontro"
+                disabled>{{ afAuth.auth.currentUser.displayName }}</span>
+            </div>
           </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">Lugar de reclamo</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeReclama">
+          <div class="p-3">
+            <label for="basic-url">Tipo de documento</label>
+            <div class="input-group mb-1">
+              <select class="custom-select" id="tipoDocumento">
+                <option selected>Elige una opción</option>
+                <option value="1">Cédula</option>
+                <option value="2">Tarjeta de Identidad</option>
+                <option value="3">Cédula de Extranjeria</option>
+                <option value="3">Pasaporte</option>
+              </select>
+            </div>
           </div>
-        </div>
+          <div class="p-3">
+            <label for="basic-url">Número de documento</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="documento" />
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">Correo</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="correo" />
+            </div>
+          </div>
 
+          <div class="p-3">
+            <label for="basic-url">Observaciones</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="observaciones" ng-Model="model.observaciones" name="observaciones"/>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="col">
-        <div class="p-3">
-          <label for="basic-url">¿Quien lo encontró?</label>
-          <div class="input-group mb-1" >
-            <span *ngIf ="afAuth.auth.currentUser" class="form-control" id="quienLoEncontro" disabled>{{afAuth.auth.currentUser.displayName}}</span>
+      <div class="row">
+        <div class="col">
+          <div class="p-3">
+            <button type="button" class="btn btn-secondary btn-general mb-4">
+              <i class="fa fa-camera pr-2"></i>Agregar Imagen
+            </button>
+          </div>
+          <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group m-2" role="group" aria-label="First group">
+            <button type="submit" class="btn btn-secondary btn-general" id="submit">
+                <i class="fa fa-check-circle pr-2"></i>Publicar
+              </button>
+            </div>
+            <div class="btn-group m-2" role="group" aria-label="Second group">
+              <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general">
+                <i class="fa fa-times-circle pr-2"></i>Cancelar
+              </button>
+            </div>
           </div>
         </div>
-        <div class="p-3">
-          <label for="basic-url">Tipo de documento</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="tipoDocumento">
-              <option selected>Elige una opción</option>
-              <option value="1">Cédula</option>
-              <option value="2">Tarjeta de Identidad</option>
-              <option value="3">Cédula de Extranjeria</option>
-              <option value="3">Pasaporte</option>
-            </select>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">Número de documento</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="documento">
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">Correo</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="correo">
-          </div>
-        </div>
-
-        <div class="p-3">
-          <label for="basic-url">Observaciones</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="observaciones">
-          </div>
-        </div>
-
       </div>
-      
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <div class="p-3">
-          <button type="button" class="btn btn-secondary btn-general mb-4"><i class="fa fa-camera pr-2"></i>Agregar
-            Imagen</button>
-        </div>
-        <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar"
-          aria-label="Toolbar with button groups">
-          <div class="btn-group m-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary btn-general"><i
-                class="fa fa-check-circle pr-2" ></i>Publicar</button>
-          </div>
-          <div class="btn-group m-2" role="group" aria-label="Second group">
-            <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
-              class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Cancelar</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+    </form>
   </div>
 </div>

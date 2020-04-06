@@ -23,7 +23,9 @@ import { AuthService } from './auth.service';
 import { MessagingService } from './service/messaging.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
-import { AsyncPipe } from '../../node_modules/@angular/common';
+import { AsyncPipe, CommonModule } from '../../node_modules/@angular/common';
+
+import { FormsModule } from '@angular/forms';
 
 // agregar las credenciales de la BD
 const config = {
@@ -47,7 +49,7 @@ const config = {
       SidebarComponent,
       EditarobjetoComponent,
       NotificacionesComponent,
-      EstadisticasComponent
+      EstadisticasComponent,
    ],
    imports: [
       BrowserModule,
@@ -60,7 +62,9 @@ const config = {
      AngularFireMessagingModule,//messagging
       RouterModule,
       MDBBootstrapModule.forRoot(),
-      HttpClientModule
+      HttpClientModule,
+      FormsModule,
+      CommonModule
    ],
    providers: [MessagingService, AsyncPipe],
    bootstrap: [

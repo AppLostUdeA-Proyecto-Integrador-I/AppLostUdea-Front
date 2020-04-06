@@ -85,28 +85,26 @@
         <div class="p-3">
           <label for="basic-url">Estado del objeto:</label>
           <div class="input-group">
-            <select class="custom-select" type="text" id="categoria" ngModel="optionValue">
-              <option value="0" selected>Elige una opción</option>
-              <option value="1">Reportado</option>
-              <option value="2">Entregado</option>
+            <select class="custom-select" type="text" id="categoria" (change)="optionValue=$event.target.value">
+              <option [value]="option.id" *ngFor="let option of options">{{option.name}}</option>
             </select>
           </div>
         </div>
 
-        <ng-container *ngIf="optionValue  == 2">
-            <div class="p-3">
-              <label for="basic-url">¿Quien lo reclamo?</label>
-              <div class="input-group mb-1">
-                <input type="text" class="form-control" id="quienReclamo">
-              </div>
+        <ng-container *ngIf="optionValue  == 3">
+          <div class="p-3">
+            <label for="basic-url">¿Quien lo reclamo?</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="quienReclamo">
             </div>
-            <div class="p-3">
-              <label for="basic-url">¿Cuando reclamo?</label>
-              <div class="input-group mb-1">
-                <input type="text" class="form-control" id="cuandoReclamo">
-              </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">¿Cuando reclamo?</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="cuandoReclamo">
             </div>
-        </ng-container>
+          </div>
+      </ng-container>
 
         <div class="p-3">
           <label for="basic-url">Observaciones</label>
