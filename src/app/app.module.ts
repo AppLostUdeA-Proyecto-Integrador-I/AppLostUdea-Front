@@ -55,11 +55,11 @@ const config = {
       BrowserModule,
       AppRoutingModule,
       //Initialize
-     AngularFireModule.initializeApp(config),
-     AngularFirestoreModule, // firestore
-     AngularFireAuthModule, // auth
-     AngularFireStorageModule, // storage
-     AngularFireMessagingModule,//messagging
+      AngularFireModule.initializeApp(config),
+      AngularFirestoreModule, // firestore
+      AngularFireAuthModule, // auth
+      AngularFireStorageModule, // storage
+      AngularFireMessagingModule,//messagging
       RouterModule,
       MDBBootstrapModule.forRoot(),
       HttpClientModule,
@@ -67,9 +67,7 @@ const config = {
       CommonModule
    ],
    providers: [MessagingService, AsyncPipe],
-   bootstrap: [
-      AppComponent
-   ]
+   bootstrap: [AppComponent]
 })
 export class AppModule { }
 

@@ -12,30 +12,39 @@ export class EncontreObjetoComponent implements OnInit {
 
   model: Objeto = {
     nombreObjeto: '',
-    fechaEncontrado: new Date(),
-    imagen: 'Imagensita',
+    fechaEncontrado: '',
+    imagen: '',
     lugarEncontrado: '',
-    estado: 'Reportado',
+    estado: '',
     detalleEntregaId: {
       fechaEntrega: null,
       id: null,
     },
     observaciones: '',
+    id: null,
     categoriasId: '',
     lugarDeReclamoId: '',
     usuariosId: '',
   };
 
-  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService) {
+  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService) { }
 
-   }
+  ngOnInit() { }
 
-  ngOnInit() {
-  }
-
-  onSubmit() {
+  onSubmit(formData) {
     console.log('Holi')
+    console.log(formData.nombreObjeto)
+    this.model.nombreObjeto = formData.nombreObjeto;
+    this.model.fechaEncontrado = formData.fechaEncontrado;
+    this.model.imagen = 'Imagen tomada del front';
+    this.model.lugarEncontrado = formData.lugarEncontrado;
+    this.model.estado = 'Reportado';
+    this.model.observaciones = formData.observaciones;
+    this.model.categoriasId = formData.categoriasId;
+    this.model.lugarDeReclamoId = formData.lugarDeReclamoId;
+    // se debe consultar a firebase el id del usuario
+    this.model.usuariosId = this.afAuth.auth.currentUser.uid;
     this.api.createObject(this.model).subscribe((response: Objeto) => console.log(response));
+    alert('Se ha agregado el objeto : ' + formData.nombreObjeto);
   }
-
 }

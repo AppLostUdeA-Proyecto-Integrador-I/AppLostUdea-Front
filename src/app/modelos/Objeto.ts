@@ -1,6 +1,6 @@
 export interface Objeto {
   nombreObjeto: string;
-  fechaEncontrado: Date;
+  fechaEncontrado: string;
   imagen: string;
   lugarEncontrado: string;
   estado: string;
@@ -9,6 +9,7 @@ export interface Objeto {
     id: string,
   },
   observaciones: string;
+  id: string;
   categoriasId: string;
   lugarDeReclamoId: string;
   usuariosId: string;
