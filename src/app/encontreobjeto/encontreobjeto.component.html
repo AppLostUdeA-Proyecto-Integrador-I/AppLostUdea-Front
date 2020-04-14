@@ -58,8 +58,7 @@
             <label for="basic-url">¿Quien lo encontró?</label>
             <div class="input-group mb-1">
               <!--Se muestra el nombre del usuario logeado, que es quien va a registrar el objeto-->
-              <label *ngIf="afAuth.auth.currentUser" class="form-control" id="quienLoEncontro"
-                disabled>{{ afAuth.auth.currentUser.displayName }}</label>
+              <label *ngIf="afAuth.auth.currentUser" class="form-control" id="quienLoEncontro">{{ afAuth.auth.currentUser.displayName }}</label>
             </div>
           </div>
           <div class="p-3">
@@ -84,9 +83,8 @@
           <div class="p-3">
             <label for="basic-url">Correo</label>
             <div class="input-group mb-1">
-              <!--Input de correo del usuario (Se debe mostrar el del usuario logeado)-->
-              <input type="text" name="correo" placeholder="Correo" class="form-control" autocomplete="off" ngModel required/>
-            </div>
+              <!--Se muestra el correo del usuario logeado, que es quien va a registrar el objeto-->
+              <label name="correo" *ngIf="afAuth.auth.currentUser" class="form-control" disabled>{{ afAuth.auth.currentUser.email }}</label>            </div>
           </div>
 
           <div class="p-3">
@@ -110,7 +108,7 @@
           <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group m-2" role="group" aria-label="First group">
               <!--Boton para crear el objeto-->
-            <button type="submit" value= "submit" class="btn btn-secondary btn-general" >
+            <button type="submit" value= "submit" class="btn btn-secondary btn-general">
                 <i class="fa fa-check-circle pr-2"></i>Publicar
               </button>
             </div>
