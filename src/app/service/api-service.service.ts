@@ -15,6 +15,10 @@ export class ApiServiceService {
     return this.http.get<any>(`${this.API_URL}/categoria`);
   }
 
+  getObjects() {
+    return this.http.get<any>(`${this.API_URL}/Objeto`);
+  }
+
   createObject(objeto: Objeto): Observable<Objeto>{
     return this.http.post<Objeto>(`${this.API_URL}/objeto`, objeto)
   }

@@ -90,7 +90,7 @@
         style="background-color:rgb(247, 247, 247);">
         <ul>
           <!--Ciclo que muestra cada elemento en vector "cosita"-->
-          <li *ngFor="let cosa of cosita" class="card-group">
+          <li *ngFor="let obj of listaObjetos" class="card-group">
             <div class="card mb-3 shadow-sm" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
@@ -105,11 +105,11 @@
                 <!--Descripción del objeto-->
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">{{cosa}}</h5>
-                    <p class="card-text">It's a broader card with text below as a natural lead-in to extra content.
-                      This
-                      content is a little longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">{{obj.nombreObjeto }}</h5>
+                    <p class="card-text">Categoria: {{obj.categoriasId }}</p>
+                    <p class="card-text">Estado: {{obj.estado }}</p>
+                    <p class="card-text">Fecha: {{obj.fechaEncontrado }}</p>
+                    <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
                   <div>
                     <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general mb-4"><i
