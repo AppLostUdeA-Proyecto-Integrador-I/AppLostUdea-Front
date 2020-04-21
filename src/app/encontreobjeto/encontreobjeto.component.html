@@ -8,21 +8,21 @@
       <div class="row">
         <div class="col">
           <div class="p-3">
-            <label for="basic-url">¿Qué encontraste?</label>
+            <label for="basic-url">¿Qué encontraste? *</label>
             <div class="input-group mb-1">
               <!--Input de nombreObjeto-->
               <input type="text" name="nombreObjeto" placeholder="Nombre" class="form-control" autocomplete="off" ngModel required/>
             </div>
           </div>
           <div class="p-3">
-            <label for="basic-url">¿Cuando se encontró?</label>
+            <label for="basic-url">¿Cuando se encontró? *</label>
             <div class="input-group mb-1">
               <!--Input de fechaEncontrado-->
               <input type="date" name="fechaEncontrado" placeholder="Fecha" class="form-control" autocomplete="off" ngModel required/>
             </div>
           </div>
           <div class="p-3">
-            <label for="basic-url">¿Dónde se encontró?</label>
+            <label for="basic-url">¿Dónde se encontró? *</label>
             <div class="input-group mb-1">
               <!--Input de lugarEncontrado-->
               <input type="text" name="lugarEncontrado" placeholder="Lugar Encontrado" class="form-control" autocomplete="off" ngModel required/>
@@ -30,22 +30,24 @@
           </div>
 
           <div class="p-3">
-            <label for="basic-url">Categoría</label>
+            <label for="basic-url">Categoría *</label>
             <div class="input-group mb-1">
               <!--Select de categoriasID-->
               <select type="text" name="categoriasId" placeholder="Categoría" class="custom-select" ngModel required>
                 <option value="1">TIP</option>
                 <option value="2">Documento/Tarjeta</option>
                 <option value="3">Llaves</option>
-                <option value="3">PC/Celular/Tablet</option>
-                <option value="3">Ropa</option>
-                <option value="3">Equipo deportivo</option>
-                <option value="3">Bicicleta</option>
+                <option value="4">PC/Celular/Tablet</option>
+                <option value="5">Ropa</option>
+                <option value="6">Equipo deportivo</option>
+                <option value="7">Bicicleta</option>
+                <option value="8">Bolso</option>
+                <option value="9">Accesorios</option>
               </select>
             </div>
           </div>
           <div class="p-3">
-            <label for="basic-url">Lugar de reclamo</label>
+            <label for="basic-url">Lugar de reclamo *</label>
             <div class="input-group mb-1">
               <!--Input de lugarDeReclamoId-->
               <input type="text" name="lugarDeReclamoId" placeholder="Lugar de Reclamo" class="form-control" autocomplete="off" required ngModel />
@@ -62,7 +64,7 @@
             </div>
           </div>
           <div class="p-3">
-            <label for="basic-url">Tipo de documento</label>
+            <label for="basic-url">Tipo de documento *</label>
             <div class="input-group mb-1">
               <!--Select de tipo_identificacion de usuario-->
               <select type="text" name="tipoDocumento" placeholder="Tipo" class="custom-select" autocomplete="off" ngModel required>
@@ -74,7 +76,7 @@
             </div>
           </div>
           <div class="p-3">
-            <label for="basic-url">Número de documento</label>
+            <label for="basic-url">Número de documento *</label>
             <div class="input-group mb-1">
               <!--Input de numIdentificacion del usuario-->
               <input type="text" name="numIdentificacion" placeholder="Numero" class="form-control" autocomplete="off" ngModel required/>
