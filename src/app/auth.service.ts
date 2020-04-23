@@ -77,11 +77,22 @@ export class AuthService {
     //Establece los datos del usuario en firestore al iniciar sesión
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
 
-    const data = {
-      uid: user.uid,
-      correo: user.email,
-      nombre: user.displayName,
-      rol: user.rol = 'usuario',
+    if (`usuario/${user.rol}` != 'usuario'){
+      console.log("hokiwi")
+      var data = {
+        uid: user.uid,
+        correo: user.email,
+        nombre: user.displayName,
+        rol: user.rol = 'administrador',
+      }
+
+    }else {
+      var data = {
+        uid: user.uid,
+        correo: user.email,
+        nombre: user.displayName,
+        rol: user.rol = 'usuario',
+      }
     }
 
     return userRef.set(data, { merge: true })

@@ -101,6 +101,7 @@
         <div class="col">
           <div class="p-3">
             <!--Agregar una imagen del objeto-->
+            <input type="file" (change)="uploadFile($event)" accept="image/*" class="btn btn-secondary btn-general mb-4">
             <button type="button" class="btn btn-secondary btn-general mb-4">
               <i class="fa fa-camera pr-2"></i>Agregar Imagen
             </button>
