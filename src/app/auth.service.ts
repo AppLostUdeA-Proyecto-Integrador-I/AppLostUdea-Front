@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-//import { User } from './user.model.ts'; // optional
+//import { UserIn } from 'src/app/user/user.model'; // optional
 
 import * as firebase from 'firebase'
 import { auth } from 'firebase/app';
@@ -9,7 +9,9 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { log } from 'util';
+import { UserInterface } from './user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,7 @@ export class AuthService {
     );
 
   }
+  //user: UserInterface;
 
   async googleSignin() { //Activa la ventana emergente de inicio de sesión de Google y autentica al usuario
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -63,6 +66,7 @@ export class AuthService {
       }
       else {
         this.updateUserData(result.user);
+
         this.router.navigate(['/home']);
       }
     }).catch(error=>{
@@ -76,27 +80,19 @@ export class AuthService {
   private updateUserData(user) {
     //Establece los datos del usuario en firestore al iniciar sesión
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
-
-    if (`usuario/${user.rol}` != 'usuario'){
-      console.log("hokiwi")
-      var data = {
-        uid: user.uid,
-        correo: user.email,
-        nombre: user.displayName,
-        rol: user.rol = 'administrador',
-      }
-
-    }else {
-      var data = {
-        uid: user.uid,
-        correo: user.email,
-        nombre: user.displayName,
-        rol: user.rol = 'usuario',
+    const data: UserInterface ={
+      uid: user.uid,
+      correo: user.email,
+      nombre: user.displayName,
+      rol:{
+        usuario: true
       }
     }
-
     return userRef.set(data, { merge: true })
 
+  }
+  isUseradministrador(userUid){
+    return this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges();
   }
 
   async signOut() {
@@ -104,6 +100,10 @@ export class AuthService {
       this.router.navigate(['/login']);
     })
   }
+  isAuth() {
+    return this.afAuth.authState.pipe(map(auth => auth));
+  }
+
 
   async deleteUser(){
     var user = firebase.auth().currentUser;

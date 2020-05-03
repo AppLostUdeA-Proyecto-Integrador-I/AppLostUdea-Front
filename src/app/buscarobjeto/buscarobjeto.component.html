@@ -1,5 +1,7 @@
 <div class="text-center container containerPrincipal">
   <div class="card shadow-lg d-flex p-3 m-3">
+    ADMIN:
+    {{ isadministrador }}
 
     <!--Titulo-->
     <div class="p-4">
@@ -111,10 +113,14 @@
                     <p class="card-text">Fecha: {{obj.fechaEncontrado }}</p>
                     <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
-                  <div>
+                  <div *ngIf ="isadministrador == true; else noAdmin">
                     <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general mb-4"><i
                         class="fas fa-edit pr-2"></i>Editar</button>
                   </div>
+                  <ng-template #noAdmin>
+                    <div></div>
+                  </ng-template>
+                  
                 </div>
               </div>
             </div>

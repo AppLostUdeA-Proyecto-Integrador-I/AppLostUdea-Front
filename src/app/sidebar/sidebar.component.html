@@ -29,9 +29,12 @@
       <li class="navbarUser">
         <a [routerLink]="['/notificaciones']" routerLinkActive="router-link-active">Notificaciónes</a>
       </li>
-      <li class="navbarUser">
+      <li class="navbarUser" *ngIf ="isadministrador == true; else noAdmin">
         <a [routerLink]="['/estadisticas']" routerLinkActive="router-link-active">Estadisticas</a>
       </li>
+      <ng-template #noAdmin>
+        <div></div>
+      </ng-template>
     </ul>
     <ul class="list-unstyled CTAs">
       <li>
