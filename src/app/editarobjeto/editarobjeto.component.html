@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col">
 
-                <div class="p-3">
+        <div class="p-3">
           <label for="basic-url">Nombre del objeto:</label>
           <div class="input-group mb-1">
             <input type="text" class="form-control" id="queEncontraste">
@@ -35,8 +35,8 @@
         </div>
         <div class="p-3">
           <label for="basic-url">Imagen del objeto:</label>
-        <img class="imgResponsive p-3" src="../../assets/img/not-found-image-15383864787lu.jpg"  alt="NotFound">
-      </div>
+          <img class="imgResponsive p-3" src="../../assets/img/not-found-image-15383864787lu.jpg" alt="NotFound">
+        </div>
 
       </div>
       <div class="col">
@@ -83,21 +83,33 @@
         </div>
 
         <div class="p-3">
-          <label for="basic-url">Estado del obejto:</label>
+          <label for="basic-url">Estado del objeto:</label>
           <div class="input-group">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">Reportado</option>
-              <option value="2">Pendiente</option>
-              <option value="3">Entregado</option>
+            <select class="custom-select" type="text" id="categoria" (change)="optionValue=$event.target.value">
+              <option [value]="option.id" *ngFor="let option of options">{{option.name}}</option>
             </select>
           </div>
         </div>
 
+        <ng-container *ngIf="optionValue  == 3">
+          <div class="p-3">
+            <label for="basic-url">¿Quien lo reclamo?</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="quienReclamo">
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">¿Cuando reclamo?</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="cuandoReclamo">
+            </div>
+          </div>
+      </ng-container>
+
         <div class="p-3">
           <label for="basic-url">Observaciones</label>
           <div class="input-group mb-1">
-            <input type="text" class="form-control" id="observaciones">
+            <input type="text" class="form-control observaciones" id="observaciones">
           </div>
         </div>
       </div>
@@ -110,8 +122,8 @@
             class="fa fa-check-circle pr-2"></i>Actualizar</button>
       </div>
       <div class="btn-group m-2" role="group" aria-label="Second group">
-        <button [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general"><i
-            class="fa fa-times-circle pr-2"></i>Regresar</button>
+        <button [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active" type="button"
+          class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
       </div>
     </div>
   </div>

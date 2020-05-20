@@ -43,6 +43,9 @@ body {
 .scrollbar-primary {
     scrollbar-color: #4285F4 #F5F5F5;
     }
+.observaciones{
+    height: 100px !important;
+}
 
 h1{
     text-shadow: 2px 2px 3px rgb(173, 172, 172);

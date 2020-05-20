@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import {ApiServiceService} from '../service/api-service.service';
 
 @Component({
   selector: 'app-buscarobjeto',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscarObjetoComponent implements OnInit {
 
-  cosita=["a","b","c","d","e","f"];
+  listaObjetos=[];
 
-  constructor() { }
+  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService) { }
 
   ngOnInit() {
+    this.api.getObjects().subscribe((response: any) => {
+      for (var item of response) {
+        this.listaObjetos.push(item);   
+      }
+    }, error => console.error(error));
   }
 
 }

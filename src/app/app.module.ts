@@ -23,10 +23,10 @@ import { AuthService } from './auth.service';
 import { MessagingService } from './service/messaging.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
-import { AsyncPipe } from '../../node_modules/@angular/common';
 import { UserService } from './service/user.service';
 import { NotificationService } from './service/notification.service';
-
+import { AsyncPipe, CommonModule } from '../../node_modules/@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // agregar las credenciales de la BD
 const config = {
@@ -50,25 +50,25 @@ const config = {
       SidebarComponent,
       EditarobjetoComponent,
       NotificacionesComponent,
-      EstadisticasComponent
+      EstadisticasComponent,
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       //Initialize
-     AngularFireModule.initializeApp(config),
-     AngularFirestoreModule, // firestore
-     AngularFireAuthModule, // auth
-     AngularFireStorageModule, // storage
-     AngularFireMessagingModule,//messagging
+      AngularFireModule.initializeApp(config),
+      AngularFirestoreModule, // firestore
+      AngularFireAuthModule, // auth
+      AngularFireStorageModule, // storage
+      AngularFireMessagingModule,//messagging
       RouterModule,
       MDBBootstrapModule.forRoot(),
-      HttpClientModule
+      HttpClientModule,
+      FormsModule,
+      CommonModule
    ],
    providers: [MessagingService, AsyncPipe,UserService,NotificationService],
-   bootstrap: [
-      AppComponent
-   ]
+   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
