@@ -16,7 +16,7 @@ export class BuscarObjetoComponent implements OnInit {
   ngOnInit() {
     this.api.getObjects().subscribe((response: any) => {
       for (var item of response) {
-        this.listaObjetos.push(item); 
+        this.listaObjetos.push(item);   
       }
     }, error => console.error(error));
   }
