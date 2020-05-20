@@ -14,15 +14,15 @@
               <th scope="col">Titulo</th>
               <th scope="col">Descripción</th>
               <th scope="col">fecha</th>
-            </tr> 
+            </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let country of COUNTRIES; index as i">
+            <tr *ngFor="let notification of notifications; index as i">
 
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ country.titulo }}</td>
-              <td>{{ country.descripcion }}</td>
-              <td>{{ country.fecha }}</td>
+              <td>{{ notification.data.title }}</td>
+              <td>{{ notification.data.body }}</td>
+              <td>{{ notification.fecha}}</td>
             </tr>
           </tbody>
         </table>

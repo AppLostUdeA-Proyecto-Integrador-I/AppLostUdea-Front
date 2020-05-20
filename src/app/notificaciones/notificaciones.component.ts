@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../service/notification.service';
 
 interface Country {
   titulo: string;
@@ -15,34 +16,16 @@ interface Country {
 })
 export class NotificacionesComponent implements OnInit {
 
-  COUNTRIES: Country[] = [
-    {
-      titulo: 'Nuevo Objeto',
-      descripcion: 'Se ha reportado un nuevo objeto encontrado',
-      fecha: 17075200,
-    },
-    {
-      titulo: 'Objeto reclamado',
-      descripcion: 'Se ha reclamado un objeto que registraste',
-      fecha: 9976140,
-    },
-    {
-      titulo: 'Nuevo Objeto',
-      descripcion: 'Se ha reportado un nuevo objeto encontrado',
-      fecha: 9629091,
-    },
-    {
-      titulo: 'Objeto reclamado',
-      descripcion: 'Se ha reclamado un objeto que registraste',
-      fecha: 9596960,
-    }
-  ];
+  notifications = []
 
-
-
-  constructor() { }
+  constructor(private notificationService: NotificationService) { }
 
   ngOnInit() {
+  this.notificationService.getNotifications("dolly.jimenez@udea.edu.co").subscribe(data =>{
+    console.log(data['notificaciones'])
+    this.notifications = data['notificaciones']
+  })
+
   }
 
 }

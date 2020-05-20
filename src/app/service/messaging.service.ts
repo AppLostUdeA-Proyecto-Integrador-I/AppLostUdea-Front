@@ -4,6 +4,7 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { UserService } from '../service/user.service';
 
 @Injectable()
 export class MessagingService {
@@ -13,7 +14,8 @@ export class MessagingService {
   constructor(
     private angularFireDB: AngularFirestore,
     private angularFireAuth: AngularFireAuth,
-    private angularFireMessaging: AngularFireMessaging) {
+    private angularFireMessaging: AngularFireMessaging,
+    private userService:UserService) {
     this.angularFireMessaging.messaging.subscribe(
       (_messaging) => {
         _messaging.onMessage = _messaging.onMessage.bind(_messaging);
@@ -36,7 +38,15 @@ export class MessagingService {
         console.log(data);
         if (token!=undefined && token!=null){
         data[userId] = token
-        this.angularFireDB.collection('fcmTokens').add(data)
+
+        this.userService.UpdateToken({
+          valor: data[userId],
+          usuarioId: 'dolly.jimenez@udea.edu.co'
+        }).subscribe(res => {
+          console.log(res);
+        });
+
+        //this.angularFireDB.collection('fcmTokens').add(data)
       }
       })
   }

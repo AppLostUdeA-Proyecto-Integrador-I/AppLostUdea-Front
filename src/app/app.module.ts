@@ -24,6 +24,9 @@ import { MessagingService } from './service/messaging.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { AsyncPipe } from '../../node_modules/@angular/common';
+import { UserService } from './service/user.service';
+import { NotificationService } from './service/notification.service';
+
 
 // agregar las credenciales de la BD
 const config = {
@@ -62,7 +65,7 @@ const config = {
       MDBBootstrapModule.forRoot(),
       HttpClientModule
    ],
-   providers: [MessagingService, AsyncPipe],
+   providers: [MessagingService, AsyncPipe,UserService,NotificationService],
    bootstrap: [
       AppComponent
    ]
