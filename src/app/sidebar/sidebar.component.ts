@@ -21,18 +21,13 @@ export class SidebarComponent implements OnInit {
     this.getCurrentUser();
   }
   getCurrentUser(){
-    console.log("llegaste hasta")
     this.authService.isAuth().subscribe(auth => {
       if(auth){
-        console.log("llegaste hasta")
         this.userUid = auth.uid;
-        console.log("llegas a 33")
         this.authService.isUseradministrador(this.userUid).subscribe(userRole =>{
           this.isadministrador = Object.assign({}, userRole.rol);
-          console.log("llegas a 3")
-          console.log(userRole.rol)
           this.isadministrador = this.isadministrador.hasOwnProperty('administrador');
-          console.log("aqui:", this.isadministrador)
+          //console.log("aqui:", this.isadministrador)
         })
       }
     })
@@ -41,6 +36,4 @@ export class SidebarComponent implements OnInit {
     this.active = !this.active;
   }
 
-} export class administrador {
-  
 }
