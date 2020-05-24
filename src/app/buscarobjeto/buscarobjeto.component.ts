@@ -16,43 +16,22 @@ import { async } from '@angular/core/testing';
 export class BuscarObjetoComponent implements OnInit {
 
   listaObjetos=[];
+
+  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService, private authService: AuthService) { }
+  //public isadministrador1= this.roles.isadministrador;
   public isadministrador: any = null;
   public userUid: string = null;
 
   public roless=new permisos(this.afAuth,this.authService)
-  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService, private authService: AuthService) {
-    this.roless.isAdmin() 
-    this.isadministrador=this.roless.isadministrador
-  }
-  //public isadministrador1= this.roles.isadministrador;
-  
   ngOnInit() {
-    console.log("Eduardo",this.isadministrador)
+    this.roless.isAdmin()
     
-    //this.getCurrentUser();
     this.api.getObjects().subscribe((response: any) => {
       for (var item of response) {
         this.listaObjetos.push(item); 
       }
     }, error => console.error(error));
   }
-  // getCurrentUser=async function() {
-  //   console.log("llegaste hasta")
-  //   await this.roless.isAdmin()
-  //   console.log("isadministrador1",this.roless.isadministrador)
-  //   this.authService.isAuth().subscribe(auth => {
-  //     if(auth){
-  //       console.log("llegaste hasta")
-  //       this.userUid = auth.uid;
-  //       console.log("llegas a 33")
-  //       this.authService.isUseradministrador(this.userUid).subscribe(userRole =>{
-  //         this.isadministrador = Object.assign({}, userRole.rol);
-  //         console.log("llegas a 3")
-  //         console.log(userRole.rol)
-  //         this.isadministrador = this.isadministrador.hasOwnProperty('administrador');
-  //       })
-  //     }
-  //   })
-  // }
+
 
 }

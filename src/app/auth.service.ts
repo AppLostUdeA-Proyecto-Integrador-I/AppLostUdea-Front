@@ -101,9 +101,8 @@ export class AuthService {
     })
   }
   isAuth() {
-    return new Promise((resolve, reject) => { resolve(this.afAuth.authState.pipe(map(auth => auth)))})
-    
-    }
+    return this.afAuth.authState.pipe(map(auth => auth));
+  }
 
 
   async deleteUser(){
