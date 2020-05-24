@@ -1,7 +1,7 @@
 export interface Objeto {
   nombreObjeto: string;
   fechaEncontrado: string;
-  imagen: string;
+  imagen: any;
   lugarEncontrado: string;
   estado: string;
   detalleEntregaId: {

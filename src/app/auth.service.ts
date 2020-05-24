@@ -11,7 +11,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { log } from 'util';
-import { UserInterface } from './user/user.model';
+import { UserInterface } from './modelos/user';
 
 @Injectable({
   providedIn: 'root'

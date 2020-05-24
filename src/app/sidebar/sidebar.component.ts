@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { UserInterface } from 'src/app/user/user.model'; // optional
+import { UserInterface } from 'src/app/modelos/user'; // optional
 
 
 @Component({
@@ -32,6 +32,7 @@ export class SidebarComponent implements OnInit {
           console.log("llegas a 3")
           console.log(userRole.rol)
           this.isadministrador = this.isadministrador.hasOwnProperty('administrador');
+          console.log("aqui:", this.isadministrador)
         })
       }
     })
@@ -40,4 +41,6 @@ export class SidebarComponent implements OnInit {
     this.active = !this.active;
   }
 
+} export class administrador {
+  
 }

@@ -4,7 +4,7 @@ import {ApiServiceService} from '../service/api-service.service';
 
 //aún no se sabe si borrar estas importaciones
 import { AuthService } from '../auth.service'
-import { UserInterface } from 'src/app/user/user.model'; // optional
+import { UserInterface } from 'src/app/modelos/user'; // optional
 
 @Component({
   selector: 'app-buscarobjeto',

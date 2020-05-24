@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {ApiServiceService} from '../service/api-service.service';
 import { Objeto } from '../modelos/Objeto';
+import { FileI } from '../modelos/imagen';
 
 //borrar los que no necesitas
 import { AngularFireModule } from '@angular/fire';
@@ -16,10 +17,11 @@ import {finalize} from 'rxjs/operators';
   styleUrls: ['./encontreobjeto.component.css']
 })
 export class EncontreObjetoComponent implements OnInit {
+  private image: any
+  private filePath: any;
+  private downloadURL: Observable<string>;
   // generar un ID aleatorio
   randomId = Math.random().toString(36).substring(2);
-
-  uploadURL: Observable<string>;
 
   model: Objeto = {
     nombreObjeto: '',
@@ -42,21 +44,35 @@ export class EncontreObjetoComponent implements OnInit {
 
   //Imagen que el usuario sube a traves del input 
 
-  uploadFile(event){
-    // Obtener archivo de entrada
-    const file = event.target.files[0];
-
-    // Generate a random ID
-    //const randomId = Math.random().toString(36).substring(2);
-    console.log(this.randomId);
-    const filepath = `images/${this.randomId}`;
-
-    const fileRef = this.storage.ref(filepath);
-
-    // cargar la imagen y guardarla en el sotarage del firebase 
-    const task = this.storage.upload(filepath, file);
+  uploadFile(event:any):void{
+    this.image = event.target.files[0];
+    this.uploadImage(this.image);
+    console.log('Image', this.image)
 
    }
+   public preAddAndUpdatePost(image: FileI): void {
+    this.uploadImage(image);
+  }
+
+   uploadImage(image: FileI) {
+     console.log(image)
+    this.filePath = `images/${image.name}`;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+            this.downloadURL = urlImage;
+            console.log("imagensita", urlImage)
+            document.querySelector('img').src = urlImage; //borrar si no se usa
+            //this.savePost(post);
+          });
+        })
+      ).subscribe();
+  }
+
+
 
 
   ngOnInit() {
@@ -68,7 +84,9 @@ export class EncontreObjetoComponent implements OnInit {
     console.log(formData.nombreObjeto)
     this.model.nombreObjeto = formData.nombreObjeto;
     this.model.fechaEncontrado = formData.fechaEncontrado;
-    this.model.imagen = this.randomId;
+    //this.uploadImage(this.image); borrar si no se necesita
+    this.model.imagen = this.downloadURL;
+    console.log("imagensita2", this.downloadURL);
     this.model.lugarEncontrado = formData.lugarEncontrado;
     this.model.estado = 'Reportado';
     this.model.observaciones = formData.observaciones;
