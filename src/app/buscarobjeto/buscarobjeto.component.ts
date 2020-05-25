@@ -24,8 +24,8 @@ export class BuscarObjetoComponent implements OnInit {
 
   public roless=new permisos(this.afAuth,this.authService)
   ngOnInit() {
-    this.roless.isAdmin()
-    
+  console.log("comentario",this.roless.isAdmin())
+
     this.api.getObjects().subscribe((response: any) => {
       for (var item of response) {
         this.listaObjetos.push(item); 
