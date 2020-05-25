@@ -22,9 +22,9 @@ export class BuscarObjetoComponent implements OnInit {
   public isadministrador: any = null;
   public userUid: string = null;
 
-  public roless=new permisos(this.afAuth,this.authService)
+  public roless = new permisos(this.afAuth,this.authService, this.api)
   ngOnInit() {
-  console.log("comentario",this.roless.isAdmin())
+    this.roless.isAdmin()
 
     this.api.getObjects().subscribe((response: any) => {
       for (var item of response) {

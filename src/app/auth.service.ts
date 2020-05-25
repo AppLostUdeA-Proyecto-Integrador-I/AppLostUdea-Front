@@ -43,6 +43,7 @@ export class AuthService {
     provider.addScope('profile');
     provider.addScope('email');
     await firebase.auth().signInWithPopup(provider).then((result) => {
+      console.log("RESULT: ", result)
       // This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
@@ -78,6 +79,7 @@ export class AuthService {
   }
 
   private updateUserData(user) {
+    console.log("USER LOG: ", user)
     //Establece los datos del usuario en firestore al iniciar sesión
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
     const data: UserInterface ={
@@ -85,12 +87,12 @@ export class AuthService {
       correo: user.email,
       nombre: user.displayName,
       rol:{
-        usuario: true
-      }
+        usuario: true      }
     }
     return userRef.set(data, { merge: true })
 
   }
+
   isUseradministrador(userUid){
     return this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges();
   }

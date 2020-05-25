@@ -8,4 +8,4 @@ export interface UserInterface {
     correo: string;
     nombre?: string;
     rol: Roles;
-  }
+}

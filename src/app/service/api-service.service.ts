@@ -23,4 +23,8 @@ export class ApiServiceService {
     return this.http.post<Objeto>(`${this.API_URL}/objeto`, objeto)
   }
 
+  getUserById(id: String) {
+    return this.http.get<any>(`${this.API_URL}/usuario/${id}`)
+  }
+
 }
