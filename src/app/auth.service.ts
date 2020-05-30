@@ -12,12 +12,13 @@ import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { log } from 'util';
 import { UserInterface } from './modelos/user';
+import { FirebaseService } from './service/firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<any>;
+  user$: Observable<UserInterface>;
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -27,7 +28,7 @@ export class AuthService {
       switchMap(user => {
         // Logged in
         if (user) {
-          return this.afs.doc<any>(`usuario/${user.uid}`).valueChanges();
+          return this.afs.doc<UserInterface>(`usuario/${user.uid}`).valueChanges();
         } else {
           // Logged out
           return of(null);
@@ -37,6 +38,8 @@ export class AuthService {
 
   }
   //user: UserInterface;
+  public holi = new FirebaseService(this.afs)
+  public user2000: string;
 
   async googleSignin() { //Activa la ventana emergente de inicio de sesión de Google y autentica al usuario
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -67,6 +70,7 @@ export class AuthService {
       }
       else {
         this.updateUserData(result.user);
+        this.user2000=result.user.uid
 
         this.router.navigate(['/home']);
       }
@@ -81,7 +85,7 @@ export class AuthService {
   private updateUserData(user) {
     console.log("USER LOG: ", user)
     //Establece los datos del usuario en firestore al iniciar sesión
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
+    const userRef: AngularFirestoreDocument<UserInterface> = this.afs.doc(`usuario/${user.uid}`);
     const data: UserInterface ={
       uid: user.uid,
       correo: user.email,
@@ -93,7 +97,15 @@ export class AuthService {
 
   }
 
+  async isTatiana(){
+    var user1 = firebase.auth().currentUser.uid;
+    console.log("user1",user1)
+    var a1 = this.holi.getUser(user1)
+    return a1
+  }
+
   isUseradministrador(userUid){
+    //console.log("Tatiana2",this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges())
     return this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges();
   }
 

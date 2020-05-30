@@ -1,7 +1,7 @@
 <div class="text-center container containerPrincipal">
   <div class="card shadow-lg d-flex p-3 m-3">
     ADMIN:
-    {{ isAdmin }}
+    {{ isadministrador }}
 
     <!--Titulo-->
     <div class="p-4">
@@ -97,7 +97,7 @@
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <!--Imagen del objeto-->
-                  <div *ngIf ="isAdmin == true; else noAdmin1">
+                  <div *ngIf ="isadministrador == true; else noAdmin1">
                   <img src={{obj.imagen}} width="195" height="195">
                   </div>
                   <ng-template #noAdmin1>
@@ -115,7 +115,7 @@
                     <p class="card-text">Fecha: {{obj.fechaEncontrado }}</p>
                     <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
-                  <div *ngIf ="isAdmin == true; else noAdmin">
+                  <div *ngIf ="isadministrador == true; else noAdmin">
                     <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general mb-4"><i
                         class="fas fa-edit pr-2"></i>Editar</button>
                   </div>

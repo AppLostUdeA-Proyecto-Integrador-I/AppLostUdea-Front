@@ -10,10 +10,16 @@ export class permisos {
 
     constructor(public afAuth: AngularFireAuth, private authService: AuthService, public api: ApiServiceService) { }
 
-    async isAdmin() {
-        await this.api.getUserById("1imlDcwDiqemutYvo6cOq3w26DU2").subscribe(
-            value => this.isadministrador = value.rol.hasOwnProperty('administrador')
+    async isAdmin(id) {
+        //console.log("Tatiana2000", this.authService.isTatiana)
+        await (await this.api.getUserById(id)).forEach(
+            value =>{ this.isadministrador = value.rol.hasOwnProperty('administrador')
+
+            console.log("el estado es",this.isadministrador)
+        }
+            
         )
+        return this.isadministrador
     }
 
 }
