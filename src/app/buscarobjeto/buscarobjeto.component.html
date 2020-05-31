@@ -1,5 +1,7 @@
 <div class="text-center container containerPrincipal">
   <div class="card shadow-lg d-flex p-3 m-3">
+    ADMIN:
+    {{ isadministrador }}
 
     <!--Titulo-->
     <div class="p-4">
@@ -50,7 +52,6 @@
             <select class="custom-select" id="categoria">
               <option selected>Elige una opción</option>
               <option value="1">Reportado</option>
-              <option value="2">Pendiente</option>
               <option value="3">Entregado</option>
             </select>
           </div>
@@ -91,31 +92,37 @@
         style="background-color:rgb(247, 247, 247);">
         <ul>
           <!--Ciclo que muestra cada elemento en vector "cosita"-->
-          <li *ngFor="let cosa of cosita" class="card-group">
-            <div class="card mb-3 shadow-sm" style="max-width: 540px;">
+          <li *ngFor="let obj of listaObjetos" class="card-group">
+            <div class="card mb-3 shadow-sm" style="width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <!--Imagen del objeto-->
-                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" role="img">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6"
-                      dy=".3em">Image</text>
-                  </svg>
+                  <div *ngIf ="isadministrador == true; else noAdmin1">
+                  <img src={{obj.imagen}} width="195" height="195">
+                  </div>
+                  <ng-template #noAdmin1>
+                    <div>
+                      <img src="https://firebasestorage.googleapis.com/v0/b/findmylost-5250f.appspot.com/o/unnamed.png?alt=media&token=00ad4927-195d-4863-bfad-e1116ccf403c" width="195" height="195">
+                    </div>
+                  </ng-template>
                 </div>
                 <!--Descripción del objeto-->
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">{{cosa}}</h5>
-                    <p class="card-text">It's a broader card with text below as a natural lead-in to extra content.
-                      This
-                      content is a little longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">{{obj.nombreObjeto }}</h5>
+                    <p class="card-text">Categoria: {{obj.categoriasId }}</p>
+                    <p class="card-text">Estado: {{obj.estado }}</p>
+                    <p class="card-text">Fecha: {{obj.fechaEncontrado }}</p>
+                    <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
-                  <div>
-                    <button type="button" class="btn btn-secondary btn-general mb-4"><i
+                  <div *ngIf ="isadministrador == true; else noAdmin">
+                    <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general mb-4"><i
                         class="fas fa-edit pr-2"></i>Editar</button>
                   </div>
+                  <ng-template #noAdmin>
+                    <div></div>
+                  </ng-template>
+                  
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@ import { BuscarObjetoComponent } from './buscarobjeto/buscarobjeto.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'notificaciones',
     component: NotificacionesComponent
+  },
+  {
+    path: 'estadisticas',
+    component: EstadisticasComponent
   },
   {
     path: '',

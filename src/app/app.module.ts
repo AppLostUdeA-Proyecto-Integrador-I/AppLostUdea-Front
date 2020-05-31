@@ -16,11 +16,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { AuthService } from './auth.service';
+import { MessagingService } from './service/messaging.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { AsyncPipe, CommonModule } from '../../node_modules/@angular/common';
+
+import { FormsModule } from '@angular/forms';
 
 // agregar las credenciales de la BD
 const config = {
@@ -44,24 +49,25 @@ const config = {
       SidebarComponent,
       EditarobjetoComponent,
       NotificacionesComponent,
-      EstadisticasComponent
+      EstadisticasComponent,
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule,
+      AppRoutingModule, 
       //Initialize
-     AngularFireModule.initializeApp(config),
-     AngularFirestoreModule, // firestore
-     AngularFireAuthModule, // auth
-     AngularFireStorageModule, // storage
+      AngularFireModule.initializeApp(config),
+      AngularFirestoreModule, // firestore
+      AngularFireAuthModule, // auth
+      AngularFireStorageModule, // storage
+      AngularFireMessagingModule,//messagging
       RouterModule,
       MDBBootstrapModule.forRoot(),
-      HttpClientModule
+      HttpClientModule,
+      FormsModule,
+      CommonModule
    ],
-   providers: [],
-   bootstrap: [
-      AppComponent
-   ]
+   providers: [MessagingService, AsyncPipe],
+   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
