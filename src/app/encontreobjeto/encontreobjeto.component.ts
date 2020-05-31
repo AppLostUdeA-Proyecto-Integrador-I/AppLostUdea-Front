@@ -3,11 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import {ApiServiceService} from '../service/api-service.service';
 import { Objeto } from '../modelos/Objeto';
 import { FileI } from '../modelos/imagen';
-
-//borrar los que no necesitas
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
+import {  AngularFireStorage } from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {finalize} from 'rxjs/operators';
 
@@ -65,28 +61,22 @@ export class EncontreObjetoComponent implements OnInit {
           fileRef.getDownloadURL().subscribe(urlImage => {
             this.downloadURL = urlImage;
             console.log("imagensita", urlImage)
-            document.querySelector('img').src = urlImage; //borrar si no se usa
-            //this.savePost(post);
+            document.querySelector('img').src = urlImage; 
           });
         })
       ).subscribe();
   }
 
 
-
-
   ngOnInit() {
    }
 
   onSubmit(formData) {
-    console.log('Holi')
     console.log(this.randomId)
     console.log(formData.nombreObjeto)
     this.model.nombreObjeto = formData.nombreObjeto;
     this.model.fechaEncontrado = formData.fechaEncontrado;
-    //this.uploadImage(this.image); borrar si no se necesita
     this.model.imagen = this.downloadURL;
-    console.log("imagensita2", this.downloadURL);
     this.model.lugarEncontrado = formData.lugarEncontrado;
     this.model.estado = 'Reportado';
     this.model.observaciones = formData.observaciones;

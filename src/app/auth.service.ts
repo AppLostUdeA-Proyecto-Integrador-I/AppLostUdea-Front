@@ -28,7 +28,7 @@ export class AuthService {
       switchMap(user => {
         // Logged in
         if (user) {
-          return this.afs.doc<any>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc<any>(`usuario/${user.uid}`).valueChanges();
         } else {
           // Logged out
           return of(null);
@@ -55,9 +55,9 @@ export class AuthService {
       //the domain you want to whitelist
       var yourDomain = '@udea.edu.co';
       //check the x amount of characters including and after @ symbol of passed user login.
-      //This means '@google.com' must be the final set of characters in the attempted login 
+      //This means '@google.com' must be the final set of characters in the attempted login
       var domain = emailString.substr(emailString.length - yourDomain.length);
-      //I send the user back to the login screen if domain does not match 
+      //I send the user back to the login screen if domain does not match
       if (domain != yourDomain) {
         //buscar como borrar de la base de datos :V
         alert("te dije que con correo de la U")
@@ -67,9 +67,6 @@ export class AuthService {
       else {
         this.updateUserData(result.user);
         const lastLogin = result.user.metadata.creationTime
-
-        //const b = user.metadata['b'] // <- Typescript does not allow '.' operator
-        //console.log(`${ user.email } last logged in ${ lastLogin } (${ b }).`)
         const lastSignedInAt = result.user.metadata.lastSignInTime
         console.log(lastSignedInAt)
         console.log(lastLogin)
@@ -101,7 +98,6 @@ export class AuthService {
   }
 
   isUseradministrador(userUid) {
-    //console.log("Tatiana2",this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges())
     return this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges();
   }
   isAuth() {
@@ -109,11 +105,9 @@ export class AuthService {
   }
 
   async signOut() {
-    //await this.afAuth.auth.signOut();  
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     })
-    //this.router.navigate(['']);
   }
 
   async deleteUser() {
@@ -124,7 +118,5 @@ export class AuthService {
       // An error happened.
     });
   }
-
-
 
 }

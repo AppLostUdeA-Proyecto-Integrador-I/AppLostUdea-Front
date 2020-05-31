@@ -14,7 +14,7 @@ import { ApiServiceService } from '../service/api-service.service';
 export class SidebarComponent implements OnInit {
   active = true;
 
-  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService,private auth: AuthService) {console.log("estoy en el sidebar",afAuth.auth.currentUser)} //borrar mas tarde 
+  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService,private auth: AuthService) { }
   public isadministrador: any = null;
   public userUid: string = null;
   public roles = new permisos(this.api)
