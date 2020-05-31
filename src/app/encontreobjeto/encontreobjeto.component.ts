@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {ApiServiceService} from '../service/api-service.service';
 import { Objeto } from '../modelos/Objeto';
+import { FileI } from '../modelos/imagen';
+import {  AngularFireStorage } from '@angular/fire/storage';
+import {Observable} from 'rxjs';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-encontreobjeto',
@@ -9,6 +13,11 @@ import { Objeto } from '../modelos/Objeto';
   styleUrls: ['./encontreobjeto.component.css']
 })
 export class EncontreObjetoComponent implements OnInit {
+  private image: any
+  private filePath: any;
+  private downloadURL: Observable<string>;
+  // generar un ID aleatorio
+  randomId = Math.random().toString(36).substring(2);
 
   model: Objeto = {
     nombreObjeto: '',
@@ -27,17 +36,47 @@ export class EncontreObjetoComponent implements OnInit {
     usuariosId: '',
   };
 
-  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService) { }
+  constructor(public afAuth: AngularFireAuth,public api: ApiServiceService, private storage: AngularFireStorage) { }
+
+  //Imagen que el usuario sube a traves del input 
+
+  uploadFile(event:any):void{
+    this.image = event.target.files[0];
+    this.uploadImage(this.image);
+    console.log('Image', this.image)
+
+   }
+   public preAddAndUpdatePost(image: FileI): void {
+    this.uploadImage(image);
+  }
+
+   uploadImage(image: FileI) {
+     console.log(image)
+    this.filePath = `images/${image.name}`;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+            this.downloadURL = urlImage;
+            console.log("imagensita", urlImage)
+            document.querySelector('img').src = urlImage; 
+          });
+        })
+      ).subscribe();
+  }
+
 
   ngOnInit() {
    }
 
   onSubmit(formData) {
-    console.log('Holi')
+    console.log(this.randomId)
     console.log(formData.nombreObjeto)
     this.model.nombreObjeto = formData.nombreObjeto;
     this.model.fechaEncontrado = formData.fechaEncontrado;
-    this.model.imagen = 'Imagen tomada del front';
+    this.model.imagen = this.downloadURL;
     this.model.lugarEncontrado = formData.lugarEncontrado;
     this.model.estado = 'Reportado';
     this.model.observaciones = formData.observaciones;

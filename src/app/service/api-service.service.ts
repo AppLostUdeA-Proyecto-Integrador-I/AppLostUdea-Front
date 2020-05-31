@@ -22,5 +22,9 @@ export class ApiServiceService {
   createObject(objeto: Objeto): Observable<Objeto>{
     return this.http.post<Objeto>(`${this.API_URL}/objeto`, objeto)
   }
+  getUserById(id: String) {
+    console.log("entramos")
+    return this.http.get<any>(`${this.API_URL}/usuario/${id}`)
+  }
 
 }
