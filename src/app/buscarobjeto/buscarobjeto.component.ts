@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { ApiServiceService } from "../service/api-service.service";
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from '../service/api-service.service';
+import { AuthService } from '../auth.service'
+import { permisos } from 'src/app/service/admin.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: "app-buscarobjeto",
@@ -10,10 +12,21 @@ import { ApiServiceService } from "../service/api-service.service";
 export class BuscarObjetoComponent implements OnInit {
   listaObjetos = [];
   listaCategorias = [];
+  public isadministrador: any = null;
+  public userUid: string = null;
+  public roles = new permisos(this.api)
 
-  constructor(public afAuth: AngularFireAuth, public api: ApiServiceService) {}
+  constructor(public api: ApiServiceService, public authService: AuthService) { }
 
   ngOnInit() {
+
+    this.authService.isAuth().subscribe(isauth => {
+      if (isauth) {
+        this.userUid = isauth.uid
+        this.getCurrentUser();
+      }
+    })
+
     this.api.getCategories().subscribe(
       (response: any) => {
         this.listaCategorias = response;
@@ -27,7 +40,13 @@ export class BuscarObjetoComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+
   }
+
+  async getCurrentUser() {
+    this.isadministrador = await this.roles.isAdmin(this.userUid)
+  }
+
 
   onSubmit(formData) {
     console.log(formData)

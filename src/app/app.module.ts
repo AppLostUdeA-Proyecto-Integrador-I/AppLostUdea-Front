@@ -54,7 +54,7 @@ const config = {
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule,
+      AppRoutingModule, 
       //Initialize
       AngularFireModule.initializeApp(config),
       AngularFirestoreModule, // firestore

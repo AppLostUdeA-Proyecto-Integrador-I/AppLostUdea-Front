@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-//import { User } from './user.model.ts'; // optional
+import { UserInterface } from 'src/app/modelos/user'; // optional
 
 import * as firebase from 'firebase'
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-
+import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { log } from 'util';
+import { permisos } from 'src/app/service/admin.service';
+import { ApiServiceService } from './service/api-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    public api: ApiServiceService
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -34,6 +37,7 @@ export class AuthService {
     );
 
   }
+  public roles = new permisos(this.api)
 
   async googleSignin() { //Activa la ventana emergente de inicio de sesión de Google y autentica al usuario
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -43,7 +47,6 @@ export class AuthService {
       // This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
-
       var user = result.user;
       //validacion de correo univercitario
       // si lo quiere hacer mas bonito llame un metodo que lo valide y retorne un booleano
@@ -63,29 +66,42 @@ export class AuthService {
       }
       else {
         this.updateUserData(result.user);
+        const lastLogin = result.user.metadata.creationTime
+        const lastSignedInAt = result.user.metadata.lastSignInTime
+        console.log(lastSignedInAt)
+        console.log(lastLogin)
         this.router.navigate(['/home']);
       }
-    }).catch(error=>{
+    }).catch(error => {
 
       console.log(error);
 
     });
 
   }
-
-  private updateUserData(user) {
-    //Establece los datos del usuario en firestore al iniciar sesión
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
-
-    const data = {
-      uid: user.uid,
-      correo: user.email,
-      nombre: user.displayName,
-      rol: user.rol = 'usuario',
+  async updateUserData(user) {
+    //Verificar si el usuario es un administrador
+    const admin = await this.roles.isAdmin(user.uid)
+    if (admin == false) {
+      //Establece los datos del usuario en firestore al iniciar sesión
+      const userRef: AngularFirestoreDocument<UserInterface> = this.afs.doc(`usuario/${user.uid}`);
+      const data: UserInterface = {
+        uid: user.uid,
+        correo: user.email,
+        nombre: user.displayName,
+        rol: {
+          usuario: true
+        }
+      }
+      return userRef.set(data, { merge: true })
     }
+  }
 
-    return userRef.set(data, { merge: true })
-
+  isUseradministrador(userUid) {
+    return this.afs.doc<UserInterface>(`usuario/${userUid}`).valueChanges();
+  }
+  isAuth() {
+    return this.afAuth.authState.pipe(map(auth => auth));
   }
 
   async signOut() {
@@ -94,14 +110,13 @@ export class AuthService {
     })
   }
 
-  async deleteUser(){
+  async deleteUser() {
     var user = firebase.auth().currentUser;
-    user.delete().then(function() {
+    user.delete().then(function () {
       // User deleted.
-    }).catch(function(error) {
+    }).catch(function (error) {
       // An error happened.
     });
   }
-
 
 }
