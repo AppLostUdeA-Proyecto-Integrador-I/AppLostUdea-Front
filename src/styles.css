@@ -47,6 +47,11 @@ body {
     height: 100px !important;
 }
 
+.titulo{
+    font-weight: bold;
+    color: rgb(1, 96, 45);
+}
+
 h1{
     text-shadow: 2px 2px 3px rgb(173, 172, 172);
     font-weight: bold;
