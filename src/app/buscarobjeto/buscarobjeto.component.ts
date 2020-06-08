@@ -12,6 +12,10 @@ import { async } from '@angular/core/testing';
 export class BuscarObjetoComponent implements OnInit {
   listaObjetos = [];
   listaCategorias = [];
+  filter = { filtros: [], paginacion: {} };
+  lastFilter = { filtros: [], paginacion: {} };
+
+
   public isadministrador: any = null;
   public userUid: string = null;
   public roles = new permisos(this.api)
@@ -50,35 +54,34 @@ export class BuscarObjetoComponent implements OnInit {
 
   onSubmit(formData) {
     console.log(formData)
-    let filter = { filtros: [] };
     let idObjeto = null;
     //Filtro por categoria
     if (formData.categoriasId) {
       let categoryFilter = { categoriasId: { "==": formData.categoriasId } };
-      filter.filtros.push(categoryFilter);
+      this.filter.filtros.push(categoryFilter);
     }
     //filtro por estado
     if (formData.estado) {
       let estadoFilter = { estado: { "==": formData.estado } };
-      filter.filtros.push(estadoFilter);
+      this.filter.filtros.push(estadoFilter);
     }
     //filtro por fecha
     if(formData.fechaInicial && formData.fechaFinal){
       let fechaInicialFilter = { fechaEncontrado: { ">=": formData.fechaInicial } };
-      filter.filtros.push(fechaInicialFilter);
+      this.filter.filtros.push(fechaInicialFilter);
       let fechaFinalFilter = { fechaEncontrado: { "<=": formData.fechaFinal } };
-      filter.filtros.push(fechaFinalFilter);
+      this.filter.filtros.push(fechaFinalFilter);
     }
     //filtro por id del objeto
     if (formData.idObjeto) {
       console.log(formData.idObjeto)
       idObjeto = formData.idObjeto
-      filter = null
+      this.filter = null
     }
 
-    console.log(JSON.stringify(filter))
+    console.log(JSON.stringify(this.filter))
     //llama al provider getObjects
-    this.api.getObjects(filter,idObjeto).subscribe(
+    this.api.getObjects(this.filter,idObjeto).subscribe(
       (response: any) => {
         if(response instanceof Array){
           this.listaObjetos = response;
@@ -87,7 +90,29 @@ export class BuscarObjetoComponent implements OnInit {
         }
 
       },
+      (error) => console.error(error),
+      () => {
+        this.lastFilter = this.filter
+        this.filter = { filtros: [], paginacion: {} };
+      }
+    );
+  }
+
+  //Metodo que retorna una página de objetos
+  getNextPage(){
+    let ultimoObjeto  = this.listaObjetos[this.listaObjetos.length - 1].id
+    this.filter.paginacion = {"ultimoElemento" : ultimoObjeto}
+    this.api.getObjects(this.filter,null).subscribe(
+      (response: any) => {
+        response.forEach(element => {
+          this.listaObjetos.push(element)
+        });
+        this.filter.paginacion = {}
+      },
       (error) => console.error(error)
     );
+
+
+
   }
 }

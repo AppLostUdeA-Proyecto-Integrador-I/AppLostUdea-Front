@@ -73,7 +73,7 @@
           <!--Boton Filtrar-->
 
           <div class="p-3">
-            <button type="submit" value="submit" class="btn btn-secondary btn-general mb-4"><i
+            <button id="filtrarBtn" type="submit" value="submit" class="btn btn-secondary btn-general mb-4"><i
                 class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
           </div>
         </div>
@@ -128,8 +128,7 @@
       <div class="row">
         <!--Home-->
         <div class="col p-3">
-          <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
-            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
+            <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i class="fa fa-times-circle pr-2"></i>Cargar más resultados</button>
         </div>
       </div>
     </div>
