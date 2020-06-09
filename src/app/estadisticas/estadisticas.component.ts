@@ -36,13 +36,13 @@ export class EstadisticasComponent implements OnInit {
   /* 
   Pasos:
    * Traer los datos (OK)
-   * Crear los arreglos correspondientes 
+   * Crear los arreglos correspondientes (OK) 
    * Gráficas:
-      - Pie: Cantidad vs Categoría
+      - Pie: Cantidad vs Categoría (OK)
       - Barras: Cantidad vs Mes
    * Arreglo de colores correspondiente al número de objetos en la gráfica
    * Entregar las gráficas
-   * Pintar
+   * Pintar (OK)
    * Refactor
   */
   
@@ -55,7 +55,7 @@ export class EstadisticasComponent implements OnInit {
     const allObjects = this.api.getObjects()
     const allCategories = this.api.getCategories()
 
-    var uniqueObjectsAmount = [], uniqueObjects = []
+    var categoryAmount = [], uniqueCategoryId = [], categoryLabels = []
 
     combineLatest(allObjects, allCategories, (objects, categories) => ({objects, categories}))
     .subscribe(pair => {
@@ -67,16 +67,18 @@ export class EstadisticasComponent implements OnInit {
       pair.objects.forEach(element => {
         // Si el elemento ya existe en el discriminado de categorías
         // Se busca la posición en la que se almacena la cantidad y se suma 1
-        if (uniqueObjects.includes(element.categoriasId)) {
-          uniqueObjectsAmount[uniqueObjects.indexOf(element.categoriasId)] += 1
+        if (uniqueCategoryId.includes(element.categoriasId)) {
+          categoryAmount[uniqueCategoryId.indexOf(element.categoriasId)] += 1
         } else {
           // De lo contrario, se crea una nueva entrada y se inicia en 1
-          uniqueObjects.push(element.categoriasId)
-          uniqueObjectsAmount.push(1)
+          uniqueCategoryId.push(element.categoriasId)
+          categoryLabels.push(this.getCategoryNameById(element.categoriasId, pair.categories))
+          categoryAmount.push(1)
         }
       });
-      console.log("Unique: ", uniqueObjects)
-      console.log("Amount: ", uniqueObjectsAmount)
+
+      // Creamos la gráfica de dona
+      this.createChart("pieChart", "doughnut", categoryLabels, "Cantidad por Categoría", categoryAmount, this.colorList)
     })
     
 
@@ -138,8 +140,16 @@ export class EstadisticasComponent implements OnInit {
     });
   }
 
+  getCategoryNameById(id, categories) {
+    for (var categoty of categories) {
+      if (categoty.id === id)
+        return categoty.nombre
+    }
+    return "N/A"
+  }
+
   // Crea la tabla apartir de los parámetros entregados
-  createChart(canvasId: String, chartType: String, labelList: String[], 
+  createChart(canvasId: any, chartType: String, labelList: String[], 
     chartLabel: String, data: Number[], colorList: String[], options: {} = {}) {
     return new Chart(canvasId, {
       type: chartType,
