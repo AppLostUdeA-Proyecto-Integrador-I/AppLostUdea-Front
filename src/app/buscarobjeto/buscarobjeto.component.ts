@@ -35,6 +35,4 @@ export class BuscarObjetoComponent implements OnInit {
   async getCurrentUser() {
     this.isadministrador = await this.roles.isAdmin(this.userUid)
   }
-
-
 }
