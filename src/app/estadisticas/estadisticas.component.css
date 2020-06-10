@@ -1,4 +1,16 @@
 #divChart{
-
-    display: block;
+    vertical-align: center;
+    display:table-cell;
+}
+.chartDona{
+    max-width: 300px ;
+    max-height: 500px ;
+}
+.chartBarra{
+    max-width: 600px ;
+    max-height: 600px ;
+}
+.chartLinea{
+    max-width: 700px ;
+    max-height: 900px ;
 }

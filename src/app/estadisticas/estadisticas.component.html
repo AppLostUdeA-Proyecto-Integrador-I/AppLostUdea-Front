@@ -1,38 +1,42 @@
 <div class="text-center container containerPrincipal">
   <div class="card shadow-lg d-flex p-3 m-3">
+
     <div class="p-4">
       <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
     </div>
 
-    <div class="row">
+    <div class="row m-3">
+
       <div id="divChart" class="col">
         <label for="basic-url" class="h4 titulo">Estados</label>
-        <canvas id="pieChart">
+        <canvas id="pieChart" class="chartDona">
         </canvas>
       </div>
-    </div>
-    <div class="row">
+
+
       <div id="divChart" class="col">
         <label for="basic-url" class="h4 titulo">Categorias</label>
-        <canvas id="barChart">
+        <canvas id="barChart" class="chartBarra">
         </canvas>
       </div>
+
     </div>
 
-    <div class="row">
+    <div class="row m-3">
       <div id="divChart" class="col">
         <label for="basic-url" class="h4 titulo">Fechas</label>
-        <canvas id="lineChart">
+        <canvas id="lineChart" class="chartLinea">
         </canvas>
       </div>
     </div>
 
     <div class="row">
       <!--Home-->
-      <div class="col p-3">
+      <div class="p-3 col">
         <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
           class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
       </div>
     </div>
+
   </div>
 </div>
