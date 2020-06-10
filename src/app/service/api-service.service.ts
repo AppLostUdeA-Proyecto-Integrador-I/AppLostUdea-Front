@@ -15,8 +15,17 @@ export class ApiServiceService {
     return this.http.get<any>(`${this.API_URL}/categoria`);
   }
 
-  getObjects() {
-    return this.http.get<any>(`${this.API_URL}/Objeto`);
+  getObjects(filter:Object,id:String) {
+    if (id) {
+      return this.http.get<any>(`${this.API_URL}/Objeto/` + id);
+    }
+
+    if(!filter){
+      return this.http.get<any>(`${this.API_URL}/Objeto`);
+    }
+    else{
+      return this.http.get<any>(`${this.API_URL}/Objeto?filter=` + JSON.stringify(filter));
+    }
   }
 
   createObject(objeto: Objeto): Observable<Objeto>{

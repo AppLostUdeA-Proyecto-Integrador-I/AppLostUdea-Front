@@ -23,8 +23,9 @@ import { AuthService } from './auth.service';
 import { MessagingService } from './service/messaging.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { UserService } from './service/user.service';
+import { NotificationService } from './service/notification.service';
 import { AsyncPipe, CommonModule } from '../../node_modules/@angular/common';
-
 import { FormsModule } from '@angular/forms';
 
 // agregar las credenciales de la BD
@@ -66,7 +67,7 @@ const config = {
       FormsModule,
       CommonModule
    ],
-   providers: [MessagingService, AsyncPipe],
+   providers: [MessagingService, AsyncPipe,UserService,NotificationService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

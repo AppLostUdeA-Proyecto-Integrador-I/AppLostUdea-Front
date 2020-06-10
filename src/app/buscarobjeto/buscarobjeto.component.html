@@ -13,76 +13,71 @@
     <h4 class="titulo">Filtrar:</h4>
 
     <div class="border p-2 m-2">
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-categoria-tab" data-toggle="tab" href="#nav-categoria" role="tab"
-            aria-controls="nav-categoria" aria-selected="true">Categoria</a>
-          <a class="nav-item nav-link" id="nav-estado-tab" data-toggle="tab" href="#nav-estado" role="tab"
-            aria-controls="nav-estado" aria-selected="false">Estado</a>
-          <a class="nav-item nav-link" id="nav-fecha-tab" data-toggle="tab" href="#nav-fecha" role="tab"
-            aria-controls="nav-fecha" aria-selected="false">Fecha</a>
-          <a class="nav-item nav-link" id="nav-id-tab" data-toggle="tab" href="#nav-id" role="tab"
-            aria-controls="nav-id" aria-selected="false">ID</a>
-        </div>
-      </nav>
+      <form #buscarObjeto="ngForm" (ngSubmit)="onSubmit(buscarObjeto.value)" ngNativeValidate>
 
-      <div class="tab-content" id="nav-tabContent">
-        <!--Filtro Categoria-->
-        <div class="tab-pane fade show active m-3" id="nav-categoria" role="tabpanel"
-          aria-labelledby="nav-categoria-tab">
-          <label for="basic-url">Seleccione la categoria del obejto:</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">TIP</option>
-              <option value="2">Documento/Tarjeta</option>
-              <option value="3">Llaves</option>
-              <option value="4">PC/Celular/Tablet</option>
-              <option value="5">Ropa</option>
-              <option value="6">Equipo deportivo</option>
-              <option value="7">Bicicleta</option>
-            </select>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-categoria-tab" data-toggle="tab" href="#nav-categoria"
+              role="tab" aria-controls="nav-categoria" aria-selected="true">Categoria</a>
+            <a class="nav-item nav-link" id="nav-estado-tab" data-toggle="tab" href="#nav-estado" role="tab"
+              aria-controls="nav-estado" aria-selected="false">Estado</a>
+            <a class="nav-item nav-link" id="nav-fecha-tab" data-toggle="tab" href="#nav-fecha" role="tab"
+              aria-controls="nav-fecha" aria-selected="false">Fecha</a>
+            <a class="nav-item nav-link" id="nav-id-tab" data-toggle="tab" href="#nav-id" role="tab"
+              aria-controls="nav-id" aria-selected="false">ID</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <!--Filtro Categoria-->
+          <div class="tab-pane fade show active m-3" id="nav-categoria" role="tabpanel"
+            aria-labelledby="nav-categoria-tab">
+            <label for="basic-url">Seleccione la categoria del objeto:</label>
+            <div class="input-group mb-1">
+              <select type="text" name="categoriasId" placeholder="Categoría" class="custom-select" ngModel>
+                <option [value]="categoria.id" *ngFor="let categoria of listaCategorias">{{categoria.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!--Filtro Estado-->
+          <div class="tab-pane fade m-3" id="nav-estado" role="tabpanel" aria-labelledby="nav-estado-tab">
+            <label for="basic-url">Seleccione el estado del objeto:</label>
+            <div class="input-group">
+              <select class="custom-select" id="estado" name="estado" type="text" ngModel>
+                <option>Reportado</option>
+                <option>Entregado</option>
+              </select>
+            </div>
+          </div>
+
+          <!--Filtro Fecha-->
+          <div class="tab-pane fade" id="nav-fecha" role="tabpanel" aria-labelledby="nav-fecha-tab">
+            <div class="mt-2">
+              <label for="basic-url">Desde:</label>
+              <input class="form-control" name="fechaInicial" type="datetime-local" id="cuandoSeEncontro1" ngModel>
+              <label for="basic-url">Hasta</label>
+              <input class="form-control" name="fechaFinal" type="datetime-local" id="cuandoSeEncontro2" ngModel>
+            </div>
+          </div>
+
+
+          <!--Filtro ID-->
+          <div class="tab-pane fade" id="nav-id" role="tabpanel" aria-labelledby="nav-id-tab">
+            <div class="pt-2">
+              <label class="m-2" for="basic-url">Ingrese el ID del objeto:</label>
+              <input type="text" name="idObjeto" class="form-control" id="idObjeto" ngModel>
+            </div>
+          </div>
+
+          <!--Boton Filtrar-->
+
+          <div class="p-3">
+            <button id="filtrarBtn" type="submit" value="submit" class="btn btn-secondary btn-general mb-4"><i
+                class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
           </div>
         </div>
-
-        <!--Filtro Estado-->
-        <div class="tab-pane fade m-3" id="nav-estado" role="tabpanel" aria-labelledby="nav-estado-tab">
-          <label for="basic-url">Seleccione el estado del obejto:</label>
-          <div class="input-group">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">Reportado</option>
-              <option value="3">Entregado</option>
-            </select>
-          </div>
-        </div>
-
-        <!--Filtro Fecha-->
-        <div class="tab-pane fade" id="nav-fecha" role="tabpanel" aria-labelledby="nav-fecha-tab">
-          <div class="mt-2">
-            <label for="basic-url">Desde:</label>
-            <input class="form-control" type="datetime-local" id="cuandoSeEncontro1">
-            <label for="basic-url">Hasta</label>
-            <input class="form-control" type="datetime-local" id="cuandoSeEncontro2">
-          </div>
-        </div>
-
-
-        <!--Filtro ID-->
-        <div class="tab-pane fade" id="nav-id" role="tabpanel" aria-labelledby="nav-id-tab">
-          <div class="pt-2">
-            <label class="m-2" for="basic-url">Ingrese el ID del objeto:</label>
-            <input type="text" class="form-control" id="idobjeto">
-          </div>
-        </div>
-
-        <!--Boton Filtrar-->
-
-        <div class="p-3">
-          <button type="button" class="btn btn-secondary btn-general mb-4"><i
-              class="fa fa-chevron-circle-right pr-2"></i>Filtrar</button>
-        </div>
-      </div>
+      </form>
     </div>
     <!--Empieza la lista-->
 
@@ -122,19 +117,18 @@
                   <ng-template #noAdmin>
                     <div></div>
                   </ng-template>
-                  
+
                 </div>
               </div>
             </div>
           </li>
         </ul>
       </div>
-      
+
       <div class="row">
         <!--Home-->
         <div class="col p-3">
-          <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
-            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
+            <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i class="fa fa-times-circle pr-2"></i>Cargar más resultados</button>
         </div>
       </div>
     </div>
