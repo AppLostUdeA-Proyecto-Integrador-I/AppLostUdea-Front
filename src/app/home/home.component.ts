@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service'
 import { AuthService } from './../auth.service';
 import { MessagingService } from "../service/messaging.service";
+import { ModalService } from '../service/modal.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,12 @@ import { MessagingService } from "../service/messaging.service";
 export class HomeComponent implements OnInit {
   data;
   message;
+  private bodyText: string;
 
 
-  constructor(private apiService: ApiServiceService, public auth: AuthService, private messagingService: MessagingService) {
+
+  constructor(private apiService: ApiServiceService, public auth: AuthService,
+    private messagingService: MessagingService, private modalService : ModalService) {
     // this.getCategoriasjeje();
   }
 
@@ -22,13 +26,15 @@ export class HomeComponent implements OnInit {
     this.messagingService.requestPermission(userId)
     this.messagingService.receiveMessage()
     this.message = this.messagingService.currentMessage
+    this.bodyText = 'This text can be updated in modal 1';
   }
 
-  // getCategoriasjeje() {
-  //   this.apiService.getCategories().subscribe(res =>{
-  //     this.data = res;
-  //     console.log(this.data)
-  //   })
-  // }
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 
 }

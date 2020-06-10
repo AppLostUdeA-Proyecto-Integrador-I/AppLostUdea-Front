@@ -21,12 +21,14 @@ import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { AuthService } from './auth.service';
 import { MessagingService } from './service/messaging.service';
+import { ModalService } from './service/modal.service';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { UserService } from './service/user.service';
 import { NotificationService } from './service/notification.service';
 import { AsyncPipe, CommonModule } from '../../node_modules/@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NotificacionModalComponent } from './notificacion-modal/notificacion-modal.component';
 
 // agregar las credenciales de la BD
 const config = {
@@ -51,10 +53,11 @@ const config = {
       EditarobjetoComponent,
       NotificacionesComponent,
       EstadisticasComponent,
+      NotificacionModalComponent,
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule, 
+      AppRoutingModule,
       //Initialize
       AngularFireModule.initializeApp(config),
       AngularFirestoreModule, // firestore
@@ -67,7 +70,7 @@ const config = {
       FormsModule,
       CommonModule
    ],
-   providers: [MessagingService, AsyncPipe,UserService,NotificationService],
+   providers: [MessagingService, AsyncPipe,UserService,NotificationService,ModalService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,7 +22,7 @@
               <th scope="row">{{ i + 1 }}</th>
               <td>{{ notification.data.title }}</td>
               <td>{{ notification.data.body }}</td>
-              <td>{{ notification.fecha}}</td>
+              <td>{{ notification.fecha | date: 'dd MMM HH:mm'}}</td>
             </tr>
           </tbody>
         </table>

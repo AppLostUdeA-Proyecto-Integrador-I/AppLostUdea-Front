@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../service/notification.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from './../auth.service';
 
 interface Country {
   titulo: string;
@@ -18,13 +20,18 @@ export class NotificacionesComponent implements OnInit {
 
   notifications = []
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService,private angularFireAuth: AngularFireAuth
+    , private auth: AuthService) { }
 
   ngOnInit() {
-  this.notificationService.getNotifications("dolly.jimenez@udea.edu.co").subscribe(data =>{
-    console.log(data['notificaciones'])
-    this.notifications = data['notificaciones']
-  })
+    this.auth.isAuth().subscribe(isauth => {
+      if (isauth) {
+        this.notificationService.getNotifications(isauth.email).subscribe(data =>{
+          this.notifications = data['notificaciones']
+        })
+      }
+    })
+
 
   }
 

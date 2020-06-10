@@ -16,6 +16,7 @@ export class EncontreObjetoComponent implements OnInit {
   private image: any
   private filePath: any;
   private downloadURL: Observable<string>;
+  listaCategorias = [];
   // generar un ID aleatorio
   randomId = Math.random().toString(36).substring(2);
 
@@ -38,7 +39,7 @@ export class EncontreObjetoComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth,public api: ApiServiceService, private storage: AngularFireStorage) { }
 
-  //Imagen que el usuario sube a traves del input 
+  //Imagen que el usuario sube a traves del input
 
   uploadFile(event:any):void{
     this.image = event.target.files[0];
@@ -61,7 +62,7 @@ export class EncontreObjetoComponent implements OnInit {
           fileRef.getDownloadURL().subscribe(urlImage => {
             this.downloadURL = urlImage;
             console.log("imagensita", urlImage)
-            document.querySelector('img').src = urlImage; 
+            document.querySelector('img').src = urlImage;
           });
         })
       ).subscribe();
@@ -69,6 +70,12 @@ export class EncontreObjetoComponent implements OnInit {
 
 
   ngOnInit() {
+    this.api.getCategories().subscribe(
+      (response: any) => {
+        this.listaCategorias = response;
+      },
+      (error) => console.error(error)
+    );
    }
 
   onSubmit(formData) {
