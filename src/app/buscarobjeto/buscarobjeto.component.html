@@ -92,12 +92,14 @@
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <!--Imagen del objeto-->
-                  <div *ngIf ="isadministrador == true; else noAdmin1">
-                  <img src={{obj.imagen}} width="195" height="195">
+                  <div *ngIf="isadministrador == true; else noAdmin1">
+                    <img src={{obj.imagen}} width="195" height="195">
                   </div>
                   <ng-template #noAdmin1>
                     <div>
-                      <img src="https://firebasestorage.googleapis.com/v0/b/findmylost-5250f.appspot.com/o/unnamed.png?alt=media&token=00ad4927-195d-4863-bfad-e1116ccf403c" width="195" height="195">
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/findmylost-5250f.appspot.com/o/unnamed.png?alt=media&token=00ad4927-195d-4863-bfad-e1116ccf403c"
+                        width="195" height="195">
                     </div>
                   </ng-template>
                 </div>
@@ -110,9 +112,9 @@
                     <p class="card-text">Fecha: {{obj.fechaEncontrado }}</p>
                     <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
-                  <div *ngIf ="isadministrador == true; else noAdmin">
-                    <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button" class="btn btn-secondary btn-general mb-4"><i
-                        class="fas fa-edit pr-2"></i>Editar</button>
+                  <div *ngIf="isadministrador == true; else noAdmin">
+                    <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button"
+                      class="btn btn-secondary btn-general mb-4"><i class="fas fa-edit pr-2"></i>Editar</button>
                   </div>
                   <ng-template #noAdmin>
                     <div></div>
@@ -128,7 +130,10 @@
       <div class="row">
         <!--Home-->
         <div class="col p-3">
-            <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i class="fa fa-times-circle pr-2"></i>Cargar más resultados</button>
+          <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
+          <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i
+              class="fa fa-times-circle pr-2"></i>Cargar más resultados</button>
         </div>
       </div>
     </div>

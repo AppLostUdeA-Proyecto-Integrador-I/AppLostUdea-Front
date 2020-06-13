@@ -18,6 +18,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { AuthService } from './auth.service';
 import { MessagingService } from './service/messaging.service';
@@ -29,6 +32,7 @@ import { NotificationService } from './service/notification.service';
 import { AsyncPipe, CommonModule } from '../../node_modules/@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotificacionModalComponent } from './notificacion-modal/notificacion-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // agregar las credenciales de la BD
 const config = {
@@ -68,10 +72,15 @@ const config = {
       MDBBootstrapModule.forRoot(),
       HttpClientModule,
       FormsModule,
-      CommonModule
+      CommonModule,
+      BrowserAnimationsModule,
+      MatButtonModule,
+      MatDialogModule
    ],
    providers: [MessagingService, AsyncPipe,UserService,NotificationService,ModalService],
-   bootstrap: [AppComponent]
+   bootstrap: [AppComponent],
+   entryComponents: [NotificacionModalComponent]
+
 })
 export class AppModule { }
 

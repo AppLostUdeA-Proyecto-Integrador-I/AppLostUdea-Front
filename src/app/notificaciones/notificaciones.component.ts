@@ -3,13 +3,6 @@ import { NotificationService } from '../service/notification.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './../auth.service';
 
-interface Country {
-  titulo: string;
-  descripcion: string;
-  fecha: number;
-}
-
-
 
 @Component({
   selector: 'app-notificaciones',
@@ -23,6 +16,7 @@ export class NotificacionesComponent implements OnInit {
   constructor(private notificationService: NotificationService,private angularFireAuth: AngularFireAuth
     , private auth: AuthService) { }
 
+//Retorna las notificaciones en caso de que el usuario este autenticado
   ngOnInit() {
     this.auth.isAuth().subscribe(isauth => {
       if (isauth) {
@@ -30,6 +24,9 @@ export class NotificacionesComponent implements OnInit {
           this.notifications = data['notificaciones']
         })
       }
+    },
+    (error)=>{
+      console.log(error);
     })
 
 

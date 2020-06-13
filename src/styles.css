@@ -23,7 +23,7 @@ body {
     width: 100%;
     max-width: 350px;
     height: auto;
-    
+
 }
 
 .btn-general{
@@ -56,6 +56,12 @@ h1{
 ul{
     margin: 0rem;
     padding: 0rem;
+}
+
+mat-dialog-container#modal-component {
+  border: 3px solid #262626;
+  border-radius: 11px;
+  background-color: #1a1a1a;
 }
 
 @media (min-width: 768px) {

@@ -1,5 +1,18 @@
-<jw-modal id="custom-modal-1">
-  <h1>A Custom Modal!</h1>
-  <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-  <button (click)="closeModal('custom-modal-1');">Close</button>
-</jw-modal>
+
+<div id="modal-content-wrapper">
+  <header id="modal-header">
+      <h1 id="modal-title">Are you sure you want to logout?</h1>
+  </header>
+  <section id="modal-body">
+      <p>If you logout bad things might happen, but don't mind me, I'm just the description in a modal...</p>
+      <p>{{data.body}}</p>
+
+    </section>
+    <mat-dialog-content>User ID is {{data.body}}.</mat-dialog-content>
+
+  <footer id="modal-footer">
+    <p>{{data.body}}</p>
+      <button mat-raised-button id="modal-action-button" (click)="actionFunction()">Logout</button>
+      <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
+  </footer>
+</div>
