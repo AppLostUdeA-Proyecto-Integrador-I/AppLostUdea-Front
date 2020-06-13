@@ -33,7 +33,7 @@ export class EstadisticasComponent implements OnInit {
   constructor(public api: ApiServiceService) { }
 
   ngOnInit() {
-    const allObjects = this.api.getObjects()
+    const allObjects = this.api.getObjectsAll()
     const allCategories = this.api.getCategories()
 
     var statusAmount = [], uniqueStatus = []

@@ -11,21 +11,16 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getCategories() {
-    return this.http.get<any>(`${this.API_URL}/categoria`);
+  getCategories(filter: String = "") {
+    return this.http.get<any>(`${this.API_URL}/categoria${filter}`);
   }
 
-  getObjects(filter:Object=null,id:String=null) {
-    if (id) {
-      return this.http.get<any>(`${this.API_URL}/Objeto/` + id);
-    }
+  getObjects(filter: String = "") {
+    return this.http.get<any>(`${this.API_URL}/Objeto${filter}`);
+  }
 
-    if(!filter){
-      return this.http.get<any>(`${this.API_URL}/Objeto`);
-    }
-    else{
-      return this.http.get<any>(`${this.API_URL}/Objeto?filter=` + JSON.stringify(filter));
-    }
+  getObjectsAll() {
+    return this.http.get<any>(`${this.API_URL}/Objeto`);
   }
 
   createObject(objeto: Objeto): Observable<Objeto>{

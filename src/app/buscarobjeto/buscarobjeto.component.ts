@@ -54,63 +54,89 @@ export class BuscarObjetoComponent implements OnInit {
 
   onSubmit(formData) {
     console.log(formData)
-    let idObjeto = null;
-    //Filtro por categoria
-    if (formData.categoriasId) {
-      let categoryFilter = { categoriasId: { "==": formData.categoriasId } };
-      this.filter.filtros.push(categoryFilter);
+    var keys = Object.keys(formData).filter(value => formData[value]!= "")
+    var filters = {
+      where: {}
     }
-    //filtro por estado
-    if (formData.estado) {
-      let estadoFilter = { estado: { "==": formData.estado } };
-      this.filter.filtros.push(estadoFilter);
-    }
-    //filtro por fecha
-    if(formData.fechaInicial && formData.fechaFinal){
-      let fechaInicialFilter = { fechaEncontrado: { ">=": formData.fechaInicial } };
-      this.filter.filtros.push(fechaInicialFilter);
-      let fechaFinalFilter = { fechaEncontrado: { "<=": formData.fechaFinal } };
-      this.filter.filtros.push(fechaFinalFilter);
-    }
-    //filtro por id del objeto
-    if (formData.idObjeto) {
-      console.log(formData.idObjeto)
-      idObjeto = formData.idObjeto
-      this.filter = null
-    }
-
-    console.log(JSON.stringify(this.filter))
-    //llama al provider getObjects
-    this.api.getObjects(this.filter,idObjeto).subscribe(
-      (response: any) => {
-        if(response instanceof Array){
-          this.listaObjetos = response;
-        }else{
-          this.listaObjetos = [response];
-        }
-
-      },
-      (error) => console.error(error),
-      () => {
-        this.lastFilter = this.filter
-        this.filter = { filtros: [], paginacion: {} };
+    if (keys.length > 1) {
+      var andArray = []
+      keys.forEach(it => {
+        andArray.push({ [it] : formData[it] })
+      })
+      filters.where["and"] = andArray
+    } else {
+      filters.where = {
+        [keys[0]] : formData[keys[0]]
       }
-    );
+    }
+
+    var filterString = `?filter=${JSON.stringify(filters)}`
+    console.log("Filter: ", filterString)
+
+    this.api.getObjects(filterString).subscribe((response: any) => {
+      console.log("Response: ", response)
+      this.listaObjetos = []
+      response.forEach(element => {
+        this.listaObjetos.push(element)
+      });
+    })
+    // let idObjeto = null;
+    // //Filtro por categoria
+    // if (formData.categoriasId) {
+    //   let categoryFilter = { categoriasId: { "==": formData.categoriasId } };
+    //   this.filter.filtros.push(categoryFilter);
+    // }
+    // //filtro por estado
+    // if (formData.estado) {
+    //   let estadoFilter = { estado: { "==": formData.estado } };
+    //   this.filter.filtros.push(estadoFilter);
+    // }
+    // //filtro por fecha
+    // if(formData.fechaInicial && formData.fechaFinal){
+    //   let fechaInicialFilter = { fechaEncontrado: { ">=": formData.fechaInicial } };
+    //   this.filter.filtros.push(fechaInicialFilter);
+    //   let fechaFinalFilter = { fechaEncontrado: { "<=": formData.fechaFinal } };
+    //   this.filter.filtros.push(fechaFinalFilter);
+    // }
+    // //filtro por id del objeto
+    // if (formData.idObjeto) {
+    //   console.log(formData.idObjeto)
+    //   idObjeto = formData.idObjeto
+    //   this.filter = null
+    // }
+
+    // console.log(JSON.stringify(this.filter))
+    // //llama al provider getObjects
+    // this.api.getObjects(this.filter, idObjeto).subscribe(
+    //   (response: any) => {
+    //     if(response instanceof Array){
+    //       this.listaObjetos = response;
+    //     }else{
+    //       this.listaObjetos = [response];
+    //     }
+
+    //   },
+    //   (error) => console.error(error),
+    //   () => {
+    //     this.lastFilter = this.filter
+    //     this.filter = { filtros: [], paginacion: {} };
+    //   }
+    // );
   }
 
   //Metodo que retorna una página de objetos
-  getNextPage(){
-    let ultimoObjeto  = this.listaObjetos[this.listaObjetos.length - 1].id
-    this.filter.paginacion = {"ultimoElemento" : ultimoObjeto}
-    this.api.getObjects(this.filter,null).subscribe(
-      (response: any) => {
-        response.forEach(element => {
-          this.listaObjetos.push(element)
-        });
-        this.filter.paginacion = {}
-      },
-      (error) => console.error(error)
-    );
+  // getNextPage(){
+  //   let ultimoObjeto  = this.listaObjetos[this.listaObjetos.length - 1].id
+  //   this.filter.paginacion = {"ultimoElemento" : ultimoObjeto}
+  //   this.api.getObjects(this.filter,null).subscribe(
+  //     (response: any) => {
+  //       response.forEach(element => {
+  //         this.listaObjetos.push(element)
+  //       });
+  //       this.filter.paginacion = {}
+  //     },
+  //     (error) => console.error(error)
+  //   );
 
-  }
+  // }
 }
