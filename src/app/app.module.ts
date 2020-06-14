@@ -12,7 +12,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-// importar los módulos que planeamos usar en nuestra aplicación Auth and Firestor
+// importar los módulos que planeamos usar en nuestra aplicación Auth and Firestore
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';

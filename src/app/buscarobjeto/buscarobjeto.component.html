@@ -10,7 +10,7 @@
 
     <!--Filtrar resultados-->
 
-    <h4>Filtrar:</h4>
+    <h4 class="titulo">Filtrar:</h4>
 
     <div class="border p-2 m-2">
       <form #buscarObjeto="ngForm" (ngSubmit)="onSubmit(buscarObjeto.value)" ngNativeValidate>
@@ -128,12 +128,15 @@
       </div>
 
       <div class="row">
+        <!--Paginador-->
+        <div class="col p-3">
+          <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i
+              class="fa fa-chevron-circle-right pr-1"></i>Cargar más resultados</button>
+        </div>
         <!--Home-->
         <div class="col p-3">
           <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
-            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
-          <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i
-              class="fa fa-times-circle pr-2"></i>Cargar más resultados</button>
+            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-1"></i>Regresar</button>
         </div>
       </div>
     </div>

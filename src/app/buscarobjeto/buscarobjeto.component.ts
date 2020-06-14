@@ -38,7 +38,7 @@ export class BuscarObjetoComponent implements OnInit {
       (error) => console.error(error)
     );
 
-    this.api.getObjects(null,null).subscribe(
+    this.api.getObjects().subscribe(
       (response: any) => {
         this.listaObjetos = response;
       },
@@ -111,8 +111,6 @@ export class BuscarObjetoComponent implements OnInit {
       },
       (error) => console.error(error)
     );
-
-
 
   }
 }

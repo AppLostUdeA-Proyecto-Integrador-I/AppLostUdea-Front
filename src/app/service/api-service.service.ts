@@ -15,7 +15,7 @@ export class ApiServiceService {
     return this.http.get<any>(`${this.API_URL}/categoria`);
   }
 
-  getObjects(filter:Object,id:String) {
+  getObjects(filter:Object=null,id:String=null) {
     if (id) {
       return this.http.get<any>(`${this.API_URL}/Objeto/` + id);
     }
