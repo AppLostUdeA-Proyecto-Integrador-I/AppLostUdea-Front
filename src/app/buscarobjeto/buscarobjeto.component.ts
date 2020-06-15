@@ -14,6 +14,7 @@ export class BuscarObjetoComponent implements OnInit {
   listaCategorias = [];
   filter = { filtros: [], paginacion: {} };
   lastFilter = { filtros: [], paginacion: {} };
+  limite = 3;
 
 
   public isadministrador: any = null;
@@ -23,7 +24,7 @@ export class BuscarObjetoComponent implements OnInit {
   constructor(public api: ApiServiceService, public authService: AuthService) { }
 
   ngOnInit() {
-
+    this.filter.paginacion = { limite: this.limite };
     this.authService.isAuth().subscribe(isauth => {
       if (isauth) {
         this.userUid = isauth.uid
@@ -38,11 +39,15 @@ export class BuscarObjetoComponent implements OnInit {
       (error) => console.error(error)
     );
 
-    this.api.getObjects().subscribe(
+    this.api.getObjects(this.filter).subscribe(
       (response: any) => {
         this.listaObjetos = response;
       },
-      (error) => console.error(error)
+      (error) => {
+        console.error(error);
+        this.listaObjetos = [];
+      },
+      () => this.filter.paginacion = {}
     );
 
   }
@@ -53,8 +58,11 @@ export class BuscarObjetoComponent implements OnInit {
 
 
   onSubmit(formData) {
+    this.filter = { filtros: [], paginacion: {} }
+    this.cleanFormData(formData)
     console.log(formData)
     let idObjeto = null;
+    this.filter.paginacion = { limite: this.limite };
     //Filtro por categoria
     if (formData.categoriasId) {
       let categoryFilter = { categoriasId: { "==": formData.categoriasId } };
@@ -74,7 +82,6 @@ export class BuscarObjetoComponent implements OnInit {
     }
     //filtro por id del objeto
     if (formData.idObjeto) {
-      console.log(formData.idObjeto)
       idObjeto = formData.idObjeto
       this.filter = null
     }
@@ -90,18 +97,54 @@ export class BuscarObjetoComponent implements OnInit {
         }
 
       },
-      (error) => console.error(error),
+      (error) => {
+        console.error(error);
+        this.listaObjetos = [];
+      },
       () => {
         this.lastFilter = this.filter
-        this.filter = { filtros: [], paginacion: {} };
+        if(this.filter){
+          this.filter.paginacion = {}
+        }
       }
     );
+  }
+
+  cleanFormData(formData){
+    const tabActual = document.querySelector('[aria-selected="true"]').id;
+    if(tabActual === 'nav-categoria-tab'){
+      formData.estado = "";
+      formData.fechaInicial = "";
+      formData.fechaFinal = "";
+      formData.idObjeto ="";
+    }
+
+    if(tabActual === 'nav-estado-tab'){
+      formData.categoriasId = "";
+      formData.fechaInicial = "";
+      formData.fechaFinal = "";
+      formData.idObjeto ="";
+    }
+
+    if(tabActual === 'nav-fecha-tab'){
+      formData.estado = "";
+      formData.categoriasId = "";
+      formData.idObjeto ="";
+    }
+
+    if(tabActual === 'nav-id-tab'){
+      formData.idObjeto = formData.idObjeto.trim()
+      formData.categoriasId = "";
+      formData.fechaInicial = "";
+      formData.fechaFinal = "";
+      formData.estado ="";
+    }
   }
 
   //Metodo que retorna una página de objetos
   getNextPage(){
     let ultimoObjeto  = this.listaObjetos[this.listaObjetos.length - 1].id
-    this.filter.paginacion = {"ultimoElemento" : ultimoObjeto}
+    this.filter.paginacion = {"ultimoElemento" : ultimoObjeto,  "limite": this.limite}
     this.api.getObjects(this.filter,null).subscribe(
       (response: any) => {
         response.forEach(element => {
@@ -109,7 +152,10 @@ export class BuscarObjetoComponent implements OnInit {
         });
         this.filter.paginacion = {}
       },
-      (error) => console.error(error)
+      (error) => {
+        console.error(error);
+        this.listaObjetos = [];
+      }
     );
 
   }
