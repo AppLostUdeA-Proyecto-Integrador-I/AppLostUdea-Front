@@ -1,0 +1,12 @@
+<div id="modal-content-wrapper">
+  <header id="modal-header" >
+    <h4 class="titulo" id="modal-title">Notificación</h4>
+  </header>
+  <section id="modal-body">
+    <p id="modal-info">Se encontró un nuevo objeto: </p>
+    <mat-dialog-content>{{data.body}}.</mat-dialog-content>
+  </section>
+  <footer id="modal-footer">
+    <button mat-raised-button class="btn-general" (click)="closeModal()">Cerrar</button>
+  </footer>
+</div>

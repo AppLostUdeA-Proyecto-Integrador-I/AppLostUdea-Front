@@ -33,16 +33,8 @@
             <label for="basic-url">Categoría *</label>
             <div class="input-group mb-1">
               <!--Select de categoriasID-->
-              <select type="text" name="categoriasId" placeholder="Categoría" class="custom-select" ngModel required>
-                <option value="1">TIP</option>
-                <option value="2">Documento/Tarjeta</option>
-                <option value="3">Llaves</option>
-                <option value="4">PC/Celular/Tablet</option>
-                <option value="5">Ropa</option>
-                <option value="6">Equipo deportivo</option>
-                <option value="7">Bicicleta</option>
-                <option value="8">Bolso</option>
-                <option value="9">Accesorios</option>
+              <select type="text" name="categoriasId" placeholder="Categoría" class="custom-select" ngModel>
+                <option [value]="categoria.id" *ngFor="let categoria of listaCategorias">{{categoria.nombre}}</option>
               </select>
             </div>
           </div>

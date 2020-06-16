@@ -38,10 +38,9 @@ export class MessagingService {
         console.log(data);
         if (token!=undefined && token!=null){
         data[userId] = token
-
         this.userService.UpdateToken({
           valor: data[userId],
-          usuarioId: 'dolly.jimenez@udea.edu.co'
+          usuarioId: this.angularFireAuth.auth.currentUser.email
         }).subscribe(res => {
           console.log(res);
         });
@@ -74,7 +73,7 @@ export class MessagingService {
   receiveMessage() {
     this.angularFireMessaging.messages.subscribe(
       (payload) => {
-        console.log("nuevo mensaje recibido ", payload);
+        //console.log("nuevo mensaje recibido ", payload);
         this.currentMessage.next(payload);
       },
       (err) => {

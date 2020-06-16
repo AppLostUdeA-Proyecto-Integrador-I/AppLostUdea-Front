@@ -1,31 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../service/notification.service';
-
-interface Country {
-  titulo: string;
-  descripcion: string;
-  fecha: number;
-}
-
-
+import { Component, OnInit } from "@angular/core";
+import { NotificationService } from "../service/notification.service";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { AuthService } from "./../auth.service";
+import { ApiServiceService } from "../service/api-service.service";
 
 @Component({
-  selector: 'app-notificaciones',
-  templateUrl: './notificaciones.component.html',
-  styleUrls: ['./notificaciones.component.css']
+  selector: "app-notificaciones",
+  templateUrl: "./notificaciones.component.html",
+  styleUrls: ["./notificaciones.component.css"],
 })
 export class NotificacionesComponent implements OnInit {
+  notifications = [];
+  filter = { paginacion: {} };
+  limite = 3;
 
-  notifications = []
+  constructor(
+    private notificationService: NotificationService,
+    private angularFireAuth: AngularFireAuth,
+    private auth: AuthService
+  ) {}
 
-  constructor(private notificationService: NotificationService) { }
-
+  //Retorna las notificaciones en caso de que el usuario este autenticado
   ngOnInit() {
-  this.notificationService.getNotifications("dolly.jimenez@udea.edu.co").subscribe(data =>{
-    console.log(data['notificaciones'])
-    this.notifications = data['notificaciones']
-  })
-
+    this.filter.paginacion = { limite: this.limite };
+    this.auth.isAuth().subscribe(
+      (isauth) => {
+        if (isauth) {
+          this.notificationService
+            .getNotifications(isauth.email, this.filter)
+            .subscribe(
+              (data) => {
+                this.notifications = data["notificaciones"];
+              },
+              (error) => console.log(error),
+              () => {
+                this.filter = { paginacion: {} };
+              }
+            );
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
+  getNextPage() {
+    let ultimoObjeto = this.notifications[this.notifications.length - 1].id;
+    this.filter.paginacion = {
+      ultimoElemento: ultimoObjeto,
+      limite: this.limite,
+    };
+    this.auth.isAuth().subscribe(
+      (isauth) => {
+        if (isauth) {
+          this.notificationService
+            .getNotifications(isauth.email, this.filter)
+            .subscribe(
+              (data) => {
+                data["notificaciones"].forEach((notificacion) => {
+                  this.notifications.push(notificacion);
+                });
+              },
+              (error) => console.log(error),
+              () => {
+                this.filter = { paginacion: {} };
+              }
+            );
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

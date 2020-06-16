@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { EditarobjetoComponent } from './editarobjeto/editarobjeto.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { NotificacionModalComponent } from './notificacion-modal/notificacion-modal.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'estadisticas',
     component: EstadisticasComponent
+  },
+  {
+    path: 'notificacion-modal',
+    component: NotificacionModalComponent
   },
   {
     path: '',

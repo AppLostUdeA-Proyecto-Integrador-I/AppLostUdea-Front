@@ -21,13 +21,23 @@ export class NotificationService {
     })
   }
 
-  // POST
-  getNotifications(userId): Observable<Object> {
-    return this.http.get<Object>(this.baseurl + '/usuario/' + userId + '/notificaciones')
+
+  getNotifications(userId, filtro=null): Observable<Object> {
+    if(filtro){
+      return this.http.get<Object>(this.baseurl + '/usuario/' + userId + '/notificaciones?filter=' + JSON.stringify(filtro))
     .pipe(
       retry(1),
       catchError(this.errorHandl)
     )
+
+    }else{
+      return this.http.get<Object>(this.baseurl + '/usuario/' + userId + '/notificaciones')
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
+    }
+
   }
 
 

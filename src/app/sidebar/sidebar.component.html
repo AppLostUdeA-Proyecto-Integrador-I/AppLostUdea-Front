@@ -27,7 +27,7 @@
         <a [routerLink]="['/encontreobjeto']" routerLinkActive="router-link-active">Encontre Objeto</a>
       </li>
       <li class="navbarUser">
-        <a [routerLink]="['/notificaciones']" routerLinkActive="router-link-active">Notificaciónes</a>
+        <a [routerLink]="['/notificaciones']" routerLinkActive="router-link-active">Notificaciones</a>
       </li>
       <li class="navbarUser" *ngIf ="isadministrador == true; else noAdmin">
         <a [routerLink]="['/estadisticas']" routerLinkActive="router-link-active">Estadisticas</a>

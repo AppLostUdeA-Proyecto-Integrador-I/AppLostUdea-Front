@@ -22,7 +22,7 @@
               <th scope="row">{{ i + 1 }}</th>
               <td>{{ notification.data.title }}</td>
               <td>{{ notification.data.body }}</td>
-              <td>{{ notification.fecha}}</td>
+              <td>{{ notification.fecha | date: 'dd MMM HH:mm'}}</td>
             </tr>
           </tbody>
         </table>
@@ -30,6 +30,11 @@
 
 
       <div class="row">
+        <!--Paginador-->
+        <div class="col p-3">
+          <button type="button" class="btn btn-secondary btn-general" (click)="getNextPage()"><i
+              class="fa fa-chevron-circle-right pr-1"></i>Cargar más resultados</button>
+        </div>
         <!--Home-->
         <div class="col p-3">
           <button [routerLink]="['/home']" routerLinkActive="router-link-active" type="button"
