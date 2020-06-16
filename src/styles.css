@@ -67,8 +67,11 @@ mat-dialog-container#modal-component {
   border: 1px solid #01602D;
   border-radius: 11px;
   background-color: #fff;
-  width: auto;
-  height: 50%;
+  position:fixed; 
+  top: calc(50% - 150px); 
+  left: calc(50% - 100px);
+  max-width: 300px;
+  max-height: 200px;
 }
 
 @media (min-width: 768px) {
