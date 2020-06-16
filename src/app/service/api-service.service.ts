@@ -35,5 +35,11 @@ export class ApiServiceService {
     console.log("entramos")
     return this.http.get<any>(`${this.API_URL}/usuario/${id}`)
   }
+  getObjects2(id: String) {
+    return this.http.get<any>(`${this.API_URL}/Objeto/${id}`);
+  }
+  getCategories2(id: String) {
+    return this.http.get<any>(`${this.API_URL}/categoria/${id}`);
+  }
 
 }

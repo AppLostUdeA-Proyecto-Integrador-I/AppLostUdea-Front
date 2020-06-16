@@ -113,7 +113,7 @@
                     <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
                   <div *ngIf="isadministrador == true; else noAdmin">
-                    <button [routerLink]="['/editarobjeto']" routerLinkActive="router-link-active" type="button"
+                    <button [routerLink]="['/editarobjeto', obj.id]" routerLinkActive="router-link-active" type="button"
                       class="btn btn-secondary btn-general mb-4"><i class="fas fa-edit pr-2"></i>Editar</button>
                   </div>
                   <ng-template #noAdmin>

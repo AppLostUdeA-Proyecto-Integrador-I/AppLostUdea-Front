@@ -32,7 +32,7 @@ const routes: Routes = [
     component: SidebarComponent
   },
   {
-    path: 'editarobjeto',
+    path: 'editarobjeto/:id',
     component: EditarobjetoComponent
   },
   {

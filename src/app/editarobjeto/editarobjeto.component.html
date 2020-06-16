@@ -1,6 +1,7 @@
 <div class="text-center container containerPrincipal">
   <div class="card shadow-lg d-flex p-3 m-3">
 
+
     <!--Titulo-->
     <div class="p-4">
       <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
@@ -12,30 +13,30 @@
         <div class="p-3">
           <label for="basic-url">Nombre del objeto:</label>
           <div class="input-group mb-1">
-            <input type="text" class="form-control" id="queEncontraste">
+            <label class="form-control" id="queEncontraste">{{ isObjeto.nombreObjeto }}</label>
           </div>
         </div>
         <div class="p-3">
           <label for="basic-url">¿Cuando se encontró?</label>
           <div class="input-group mb-1">
-            <input class="form-control" type="datetime-local" id="cuandoSeEncontro">
+            <label class="form-control" id="cuandoSeEncontro">{{ isObjeto.fechaEncontrado }}</label>
           </div>
         </div>
         <div class="p-3">
           <label for="basic-url">¿Dónde se encontró?</label>
           <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeEncontro">
+            <label class="form-control" id="dondeSeEncontro">{{ isObjeto.lugarEncontrado }}</label>
           </div>
         </div>
         <div class="p-3">
           <label for="basic-url">ID del objeto</label>
           <div class="input-group mb-1">
-            <input type="text" class="form-control" id="dondeSeEncontro" disabled>
+            <label class="form-control" id="dondeSeEncontro">{{ isObjeto.id }}</label>
           </div>
         </div>
         <div class="p-3">
           <label for="basic-url">Imagen del objeto:</label>
-          <img class="imgResponsive p-3" src="../../assets/img/not-found-image-15383864787lu.jpg" alt="NotFound">
+          <img class="imgResponsive p-3" src={{isObjeto.imagen}} width="195" height="195">
         </div>
 
       </div>
@@ -44,7 +45,7 @@
         <div class="p-3">
           <label for="basic-url">¿Quien lo encontró?</label>
           <div class="input-group mb-1">
-            <input type="text" class="form-control" id="quienLoEncontro">
+            <label class="form-control" id="quienLoEncontro">{{ usuario.nombre }}</label>
           </div>
         </div>
         <div class="p-3">
@@ -69,16 +70,7 @@
         <div class="p-3">
           <label for="basic-url">Categoría:</label>
           <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">TIP</option>
-              <option value="2">Documento/Tarjeta</option>
-              <option value="3">Llaves</option>
-              <option value="3">PC/Celular/Tablet</option>
-              <option value="3">Ropa</option>
-              <option value="3">Equipo deportivo</option>
-              <option value="3">Bicicleta</option>
-            </select>
+            <label class="form-control" id="categoria">{{ categoria.nombre }}</label>
           </div>
         </div>
 
@@ -109,7 +101,7 @@
         <div class="p-3">
           <label for="basic-url">Observaciones</label>
           <div class="input-group mb-1">
-            <input type="text" class="form-control observaciones" id="observaciones">
+            <label class="form-control observaciones" id="observaciones">{{ isObjeto.observaciones }}</label>
           </div>
         </div>
       </div>

@@ -3,6 +3,8 @@ import { ApiServiceService } from '../service/api-service.service';
 import { AuthService } from '../auth.service'
 import { permisos } from 'src/app/service/admin.service';
 import { async } from '@angular/core/testing';
+import { Objeto } from '../modelos/Objeto';
+import { EditarobjetoComponent } from 'src/app/editarobjeto/editarobjeto.component';
 
 @Component({
   selector: "app-buscarobjeto",
@@ -19,6 +21,7 @@ export class BuscarObjetoComponent implements OnInit {
   public isadministrador: any = null;
   public userUid: string = null;
   public roles = new permisos(this.api)
+ 
 
   constructor(public api: ApiServiceService, public authService: AuthService) { }
 
