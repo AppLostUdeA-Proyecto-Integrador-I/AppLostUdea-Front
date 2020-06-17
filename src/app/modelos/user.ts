@@ -7,5 +7,6 @@ export interface Roles{
     uid: string;
     correo: string;
     nombre?: string;
+    permiteNotificaciones: boolean;
     rol: Roles;
   }
