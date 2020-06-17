@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiServiceService {
-  private API_URL = 'http://localhost:3000/api';
+  private API_URL = 'https://arcane-eyrie-96583.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 
