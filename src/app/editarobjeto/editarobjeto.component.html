@@ -7,116 +7,121 @@
       <h1>App Lost UdeA<i class="fa fa-search pl-2"></i></h1>
     </div>
 
-    <div class="row">
-      <div class="col">
-
-        <div class="p-3">
-          <label for="basic-url">Nombre del objeto:</label>
-          <div class="input-group mb-1">
-            <label class="form-control" id="queEncontraste">{{ isObjeto.nombreObjeto }}</label>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">¿Cuando se encontró?</label>
-          <div class="input-group mb-1">
-            <label class="form-control" id="cuandoSeEncontro">{{ isObjeto.fechaEncontrado }}</label>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">¿Dónde se encontró?</label>
-          <div class="input-group mb-1">
-            <label class="form-control" id="dondeSeEncontro">{{ isObjeto.lugarEncontrado }}</label>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">ID del objeto</label>
-          <div class="input-group mb-1">
-            <label class="form-control" id="dondeSeEncontro">{{ isObjeto.id }}</label>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">Imagen del objeto:</label>
-          <img class="imgResponsive p-3" src={{isObjeto.imagen}} width="195" height="195">
-        </div>
-
-      </div>
-      <div class="col">
-
-        <div class="p-3">
-          <label for="basic-url">¿Quien lo encontró?</label>
-          <div class="input-group mb-1">
-            <label class="form-control" id="quienLoEncontro">{{ usuario.nombre }}</label>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">Tipo de documento</label>
-          <div class="input-group mb-1">
-            <select class="custom-select" id="categoria">
-              <option selected>Elige una opción</option>
-              <option value="1">Cédula</option>
-              <option value="2">Tarjeta de Identidad</option>
-              <option value="3">Cédula de Extranjeria</option>
-              <option value="3">Pasaporte</option>
-            </select>
-          </div>
-        </div>
-        <div class="p-3">
-          <label for="basic-url">Número de documento</label>
-          <div class="input-group mb-1">
-            <input type="text" class="form-control" id="documento">
-          </div>
-        </div>
-
-        <div class="p-3">
-          <label for="basic-url">Categoría:</label>
-          <div class="input-group mb-1">
-            <label class="form-control" id="categoria">{{ categoria.nombre }}</label>
-          </div>
-        </div>
-
-        <div class="p-3">
-          <label for="basic-url">Estado del objeto:</label>
-          <div class="input-group">
-            <select class="custom-select" type="text" id="categoria" (change)="optionValue=$event.target.value">
-              <option [value]="option.id" *ngFor="let option of options">{{option.name}}</option>
-            </select>
-          </div>
-        </div>
-
-        <ng-container *ngIf="optionValue  == 3">
+    <form #editarobjeto = "ngForm" (ngSubmit)="onSubmit2(editarobjeto.value)" ngNativeValidate>
+      <div class="row">
+        <div class="col">
+  
           <div class="p-3">
-            <label for="basic-url">¿Quien lo reclamo?</label>
+            <label for="basic-url">Nombre del objeto:</label>
             <div class="input-group mb-1">
-              <input type="text" class="form-control" id="quienReclamo">
+              <label class="form-control" name="nombreObjeto" id="queEncontraste">{{ isObjeto.nombreObjeto }}</label>
             </div>
           </div>
           <div class="p-3">
-            <label for="basic-url">¿Cuando reclamo?</label>
+            <label for="basic-url">¿Cuando se encontró?</label>
             <div class="input-group mb-1">
-              <input type="text" class="form-control" id="cuandoReclamo">
+              <label class="form-control" name="fechaEncontrado">{{ isObjeto.fechaEncontrado }}</label>
             </div>
           </div>
-      </ng-container>
-
-        <div class="p-3">
-          <label for="basic-url">Observaciones</label>
-          <div class="input-group mb-1">
-            <label class="form-control observaciones" id="observaciones">{{ isObjeto.observaciones }}</label>
+          <div class="p-3">
+            <label for="basic-url">¿Dónde se encontró?</label>
+            <div class="input-group mb-1">
+              <label class="form-control" id="dondeSeEncontro">{{ isObjeto.lugarEncontrado }}</label>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">ID del objeto</label>
+            <div class="input-group mb-1">
+              <label class="form-control" id="dondeSeEncontro">{{ isObjeto.id }}</label>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">Imagen del objeto:</label>
+            <img class="imgResponsive p-3" src={{isObjeto.imagen}} width="195" height="195">
+          </div>
+  
+        </div>
+        <div class="col">
+  
+          <div class="p-3">
+            <label for="basic-url">¿Quien lo encontró?</label>
+            <div class="input-group mb-1">
+              <label class="form-control" id="quienLoEncontro">{{ usuario.nombre }}</label>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">Tipo de documento</label>
+            <div class="input-group mb-1">
+              <select class="custom-select" id="categoria">
+                <option selected>Elige una opción</option>
+                <option value="1">Cédula</option>
+                <option value="2">Tarjeta de Identidad</option>
+                <option value="3">Cédula de Extranjeria</option>
+                <option value="3">Pasaporte</option>
+              </select>
+            </div>
+          </div>
+          <div class="p-3">
+            <label for="basic-url">Número de documento</label>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control" id="documento">
+            </div>
+          </div>
+  
+          <div class="p-3">
+            <label for="basic-url">Categoría:</label>
+            <div class="input-group mb-1">
+              <label class="form-control" id="categoria">{{ categoria.nombre }}</label>
+            </div>
+          </div>
+  
+          <div class="p-3">
+            <label for="basic-url">Estado del objeto:</label>
+            <div class="input-group">
+              <select class="custom-select" type="text" id="categoria" (change)="optionValue=$event.target.value">
+                <option [value]="option.id" *ngFor="let option of options">{{option.name}}</option>
+              </select>
+            </div>
+          </div>
+  
+          <ng-container *ngIf="optionValue  == 3">
+            <div class="p-3">
+              <label for="basic-url">¿Quien lo reclamó?*</label>
+              <div class="input-group mb-1">
+                <input type="text" name="quienReclamo" class="form-control" autocomplete="off" required ngModel />
+              </div>
+            </div>
+            <div class="p-3">
+              <label for="basic-url">¿Cuando reclamó? *</label>
+              <div class="input-group mb-1">
+                <!--Input de fechaEncontrado-->
+                <input type="date" name="fechaEntrega" placeholder="Fecha" class="form-control" autocomplete="off" ngModel required/>
+              </div>
+            </div>
+        </ng-container>
+  
+          <div class="p-3">
+            <label for="basic-url">Observaciones</label>
+            <div class="input-group mb-1">
+              <label class="form-control observaciones" id="observaciones">{{ isObjeto.observaciones }}</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="btn-toolbar mt-3" style="justify-content: center; display: flex;" role="toolbar"
-      aria-label="Toolbar with button groups">
-      <div class="btn-group m-2" role="group" aria-label="First group">
-        <button type="button" class="btn btn-secondary btn-general"><i
-            class="fa fa-check-circle pr-2"></i>Actualizar</button>
+  
+      <div class="btn-toolbar mt-3" style="justify-content: center; display: flex;" role="toolbar"
+        aria-label="Toolbar with button groups">
+        <div class="btn-group m-2" role="group" aria-label="First group">
+          <button type="submit" value= "submit" class="btn btn-secondary btn-general">
+            <i class="fa fa-check-circle pr-2"></i>Actualizar
+          </button>
+        </div>
+        <div class="btn-group m-2" role="group" aria-label="Second group">
+          <button [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
+        </div>
       </div>
-      <div class="btn-group m-2" role="group" aria-label="Second group">
-        <button [routerLink]="['/buscarobjeto']" routerLinkActive="router-link-active" type="button"
-          class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
-      </div>
-    </div>
+      
+    </form>
   </div>
 </div>

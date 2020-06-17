@@ -17,8 +17,6 @@ export class EncontreObjetoComponent implements OnInit {
   private filePath: any;
   private downloadURL: Observable<string>;
   listaCategorias = [];
-  // generar un ID aleatorio
-  randomId = Math.random().toString(36).substring(2);
 
   model: Objeto = {
     nombreObjeto: '',
@@ -79,8 +77,6 @@ export class EncontreObjetoComponent implements OnInit {
    }
 
   onSubmit(formData) {
-    console.log(this.randomId)
-    console.log(formData.nombreObjeto)
     this.model.nombreObjeto = formData.nombreObjeto;
     this.model.fechaEncontrado = formData.fechaEncontrado;
     this.model.imagen = this.downloadURL;

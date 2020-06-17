@@ -10,22 +10,38 @@ import { ApiServiceService } from '../service/api-service.service';
   styleUrls: ['./editarobjeto.component.css']
 })
 
-
-
 export class EditarobjetoComponent implements OnInit {
 
 
   optionValue: string;
   options: any[] = [
-    //{ id: 1, name: 'Elije una opción' },
-    { id: 1, name: 'Reportado' },
-    { id: 2, name: 'Entregado' },
+    { id: 1, name: 'Elije una opción' },
+    { id: 2, name: 'Reportado' },
+    { id: 3, name: 'Entregado' },
   ];
 
   public usuario: any = null;
   public categoria: any = null;
   public isObjeto : Objeto
   params : Subscription
+
+  model: Objeto = {
+    nombreObjeto: '',
+    fechaEncontrado: '',
+    imagen: '',
+    lugarEncontrado: '',
+    estado: '',
+    detalleEntregaId: {
+      fechaEntrega: '',
+      id: '',
+    },
+    observaciones: '',
+    id: '',
+    categoriasId: '',
+    lugarDeReclamoId: '',
+    usuariosId: '',
+  };
+
 
   constructor(private route: ActivatedRoute,public api: ApiServiceService,) {
     
@@ -35,10 +51,8 @@ export class EditarobjetoComponent implements OnInit {
     this.params = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
-        console.log("paulini4",id)
         this.api.getObjects2(id).subscribe(
           (response: any) => {
-            console.log("response1",response)
             this.isObjeto = response;
             this.getUser();
             this.getCategoria();
@@ -60,4 +74,21 @@ export class EditarobjetoComponent implements OnInit {
       value1 =>{ this.categoria = value1
   }     
   )}
+
+  onSubmit2(formData) {
+    this.model.nombreObjeto = this.isObjeto.nombreObjeto;
+    this.model.fechaEncontrado= this.isObjeto.fechaEncontrado;
+    this.model.imagen = this.isObjeto.imagen;
+    this.model.lugarEncontrado = this.isObjeto.lugarEncontrado;
+    this.model.estado ='Entregado';
+    this.model.detalleEntregaId.id = formData.quienReclamo;
+    this.model.detalleEntregaId.fechaEntrega = formData.fechaEntrega;
+    this.model.observaciones = this.isObjeto.observaciones;
+    this.model.id= this.isObjeto.id;
+    this.model.categoriasId = this.isObjeto.categoriasId;
+    this.model.lugarDeReclamoId = this.isObjeto.lugarDeReclamoId;
+    this.model.usuariosId = this.usuario.id;
+    this.api.replaceObject(this.model).subscribe((response: Objeto) => console.log(response));
+    alert('Se ha actualizado el objeto : ' + this.isObjeto.nombreObjeto);
+  }  
 }

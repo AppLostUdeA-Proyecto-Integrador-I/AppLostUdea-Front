@@ -31,6 +31,11 @@ export class ApiServiceService {
   createObject(objeto: Objeto): Observable<Objeto>{
     return this.http.post<Objeto>(`${this.API_URL}/objeto`, objeto)
   }
+
+  replaceObject(objeto: Objeto): Observable<Objeto>{
+    return this.http.put<Objeto>(`${this.API_URL}/objeto`, objeto)
+  }
+
   getUserById(id: String) {
     return this.http.get<any>(`${this.API_URL}/usuario/${id}`)
   }
