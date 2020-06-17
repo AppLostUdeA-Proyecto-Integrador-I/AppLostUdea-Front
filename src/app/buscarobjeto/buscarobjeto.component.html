@@ -109,7 +109,7 @@
                     <h5 class="card-title">{{obj.nombreObjeto }}</h5>
                     <p class="card-text">Categoria: {{obj.categoriasId }}</p>
                     <p class="card-text">Estado: {{obj.estado }}</p>
-                    <p class="card-text">Fecha: {{obj.fechaEncontrado }}</p>
+                    <p class="card-text">Fecha: {{obj.fechaEncontrado | date: 'dd MMM yyyy'}}</p>
                     <!-- <p class="card-text">ID: {{obj.id }}</p> -->
                   </div>
                   <div *ngIf="isadministrador == true; else noAdmin">

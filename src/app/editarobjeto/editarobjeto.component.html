@@ -10,7 +10,7 @@
     <form #editarobjeto = "ngForm" (ngSubmit)="onSubmit2(editarobjeto.value)" ngNativeValidate>
       <div class="row">
         <div class="col">
-  
+
           <div class="p-3">
             <label for="basic-url">Nombre del objeto:</label>
             <div class="input-group mb-1">
@@ -20,7 +20,7 @@
           <div class="p-3">
             <label for="basic-url">¿Cuando se encontró?</label>
             <div class="input-group mb-1">
-              <label class="form-control" name="fechaEncontrado">{{ isObjeto.fechaEncontrado }}</label>
+              <label class="form-control" name="fechaEncontrado">{{ isObjeto.fechaEncontrado | date: 'dd MMM yyyy' }}</label>
             </div>
           </div>
           <div class="p-3">
@@ -39,10 +39,10 @@
             <label for="basic-url">Imagen del objeto:</label>
             <img class="imgResponsive p-3" src={{isObjeto.imagen}} width="195" height="195">
           </div>
-  
+
         </div>
         <div class="col">
-  
+
           <div class="p-3">
             <label for="basic-url">¿Quien lo encontró?</label>
             <div class="input-group mb-1">
@@ -67,14 +67,14 @@
               <input type="text" class="form-control" id="documento">
             </div>
           </div>
-  
+
           <div class="p-3">
             <label for="basic-url">Categoría:</label>
             <div class="input-group mb-1">
               <label class="form-control" id="categoria">{{ categoria.nombre }}</label>
             </div>
           </div>
-  
+
           <div class="p-3">
             <label for="basic-url">Estado del objeto:</label>
             <div class="input-group">
@@ -83,7 +83,7 @@
               </select>
             </div>
           </div>
-  
+
           <ng-container *ngIf="optionValue  == 3">
             <div class="p-3">
               <label for="basic-url">¿Quien lo reclamó?*</label>
@@ -99,7 +99,7 @@
               </div>
             </div>
         </ng-container>
-  
+
           <div class="p-3">
             <label for="basic-url">Observaciones</label>
             <div class="input-group mb-1">
@@ -108,7 +108,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="btn-toolbar mt-3" style="justify-content: center; display: flex;" role="toolbar"
         aria-label="Toolbar with button groups">
         <div class="btn-group m-2" role="group" aria-label="First group">
@@ -121,7 +121,7 @@
             class="btn btn-secondary btn-general"><i class="fa fa-times-circle pr-2"></i>Regresar</button>
         </div>
       </div>
-      
+
     </form>
   </div>
 </div>
